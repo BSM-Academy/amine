@@ -109,20 +109,6 @@ summary{cursor:pointer;font-weight:700}
     <p class="doux">Tu en as déjà un ? Garde-le et clique sur « C'est fait ».</p>
   </section>
 
-  <section class="ecran" data-bouton="J'ai accepté l'invitation">
-    <span class="partie">GitHub</span>
-    <h2>Demande ton accès</h2>
-    <div id="zone-code">
-      <p>Tape le <b>code d'accès</b> donné dans ta formation :</p>
-      <input type="text" id="code" autocomplete="off" placeholder="Code d'accès">
-    </div>
-    <a class="lien" id="demande" href="#" target="_blank" rel="noopener">Demander mon accès</a>
-    <ol>
-      <li>Sur la page GitHub qui s'ouvre, clique sur <b>Create</b> (ne change rien).</li>
-      <li>Moins d'une minute après, tu reçois un e-mail de GitHub : clique sur <b>View invitation</b>, puis <b>Accept invitation</b>.</li>
-    </ol>
-    <p class="doux">Pas d'e-mail après 2 minutes ? Ouvre <a href="https://github.com/contactsyriusmedia-create/adcloner-eleves/invitations" target="_blank" rel="noopener">ta page d'invitation</a>. Message « code incorrect » sur GitHub ? Vérifie le code et recommence.</p>
-  </section>
 
   <section class="ecran" data-bouton="Ma copie est créée">
     <span class="partie">GitHub</span>
@@ -308,7 +294,7 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
       <li>Environ 15 minutes plus tard, il te donne un <b>lien</b> pour télécharger ta vidéo. Tu peux fermer l'ordinateur en attendant.</li>
     </ol>
     <div class="astuce"><b>Mise à jour :</b> quand ton formateur annonce une nouvelle version, va sur ton dépôt GitHub et clique sur <b>Sync fork</b> → <b>Update branch</b>.</div>
-    <div class="astuce"><b>Bon à savoir :</b> ton formateur peut voir tes vidéos, pour t'aider à progresser et améliorer AdCloner. Télécharge-les au fur et à mesure : si ton accès se termine, ta copie est supprimée.</div>
+    <div class="astuce"><b>Bon à savoir :</b> ta copie et tes vidéos sont visibles par ton formateur, pour t'aider à progresser et améliorer AdCloner.</div>
     <h2 style="font-size:22px;margin-top:26px">Un souci ?</h2>
     <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Revois l'écran « Les réglages » de ton atelier, puis démarre une <b>nouvelle</b> session.</p></details>
     <details><summary>Erreur 401 ou « invalid api key »</summary><p>La clé de ce service est fausse. Supprime son secret dans le coffre et ajoute-le à nouveau. ElevenLabs : la clé commence par <code>sk_</code>.</p></details>
@@ -331,18 +317,6 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
   var suivant=document.getElementById('suivant'), retour=document.getElementById('retour'), prenom=document.getElementById('prenom');
   var i=Math.min(parseInt(lire('ecran'),10)||0, ecrans.length-1);
   prenom.value=lire('prenom');
-  var code=document.getElementById('code'), demande=document.getElementById('demande');
-  // le code arrive caché dans le lien envoyé aux élèves (?code=…) : on le garde et on masque la case
-  var codeLien=new URLSearchParams(location.search).get('code');
-  if(codeLien){ecrire('code',codeLien.trim());history.replaceState(null,'',location.pathname)}
-  code.value=lire('code');
-  if(code.value)document.getElementById('zone-code').style.display='none';
-  function lienDemande(){
-    var c=code.value.trim();
-    demande.href='https://github.com/contactsyriusmedia-create/adcloner-guide/issues/new?title='+encodeURIComponent("Demande d'accès AdCloner")+'&body='+encodeURIComponent("Code d'accès : "+c);
-    demande.style.opacity=c?1:.4; demande.style.pointerEvents=c?'auto':'none';
-  }
-  code.addEventListener('input',function(){ecrire('code',code.value.trim());lienDemande()}); lienDemande();
 
   function noms(){
     var p=prenom.value.trim();

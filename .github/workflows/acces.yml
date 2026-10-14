@@ -22,13 +22,18 @@ jobs:
           NOEUD: ${{ github.event.issue.node_id }}
           DEPOT: ${{ github.repository }}
         run: |
-          set -e
           if [ -n "$CODE" ] && printf '%s' "$CORPS" | grep -qF -- "$CODE"; then
-            gh api -X PUT "repos/contactsyriusmedia-create/adcloner-eleves/collaborators/$ELEVE" -f permission=pull >/dev/null
-            echo "Invitation envoyée à $ELEVE"
-            # supprimer la demande pour que le code ne reste pas visible
-            gh api graphql -f query='mutation($id:ID!){deleteIssue(input:{issueId:$id}){clientMutationId}}' -f id="$NOEUD" >/dev/null \
-              || gh issue close "$NUMERO" -R "$DEPOT" -c "Invitation envoyée ✅ Regarde tes e-mails."
+            if gh api -X PUT "repos/contactsyriusmedia-create/adcloner-eleves/collaborators/$ELEVE" -f permission=pull >/dev/null; then
+              echo "Invitation envoyée à $ELEVE"; message="Invitation envoyée ✅ Regarde tes e-mails."
+            else
+              echo "ÉCHEC de l'invitation pour $ELEVE"; message="L'invitation a échoué ❌ Préviens ton formateur."
+            fi
+            # dans tous les cas, supprimer la demande pour que le code ne reste pas visible (sinon : retirer le code et fermer)
+            if ! gh api graphql -f query='mutation($id:ID!){deleteIssue(input:{issueId:$id}){clientMutationId}}' -f id="$NOEUD" >/dev/null; then
+              echo "Suppression impossible : code retiré de la demande"
+              gh issue edit "$NUMERO" -R "$DEPOT" --body "(code retiré)"
+              gh issue close "$NUMERO" -R "$DEPOT" -c "$message"
+            fi
           else
             gh issue close "$NUMERO" -R "$DEPOT" -c "Code d'accès incorrect ❌ Vérifie le code donné dans ta formation, puis refais la demande depuis le tuto."
             echo "Code incorrect pour $ELEVE"

@@ -104,18 +104,23 @@ summary{cursor:pointer;font-weight:700}
   <section class="ecran" data-bouton="C'est fait">
     <span class="partie">GitHub</span>
     <h2>Crée ton compte GitHub</h2>
-    <p>C'est là que vit AdCloner, et là que tu retrouveras tes vidéos finies.</p>
+    <p>C'est là que tu déposeras tes pubs à traduire, et là que tu retrouveras tes vidéos finies.</p>
     <a class="lien" href="https://github.com/signup" target="_blank" rel="noopener">Créer mon compte GitHub</a>
     <p class="doux">Tu en as déjà un ? Garde-le et clique sur « C'est fait ».</p>
   </section>
 
-
-  <section class="ecran" data-bouton="Ma copie est créée">
+  <section class="ecran" data-bouton="Mon dossier est créé" data-requis="pseudo">
     <span class="partie">GitHub</span>
-    <h2>Crée ta copie d'AdCloner</h2>
-    <p>C'est ton AdCloner à toi : tes vidéos arriveront dedans.</p>
-    <a class="lien" href="https://github.com/contactsyriusmedia-create/adcloner-eleves/fork" target="_blank" rel="noopener">Créer ma copie</a>
-    <p>Sur la page qui s'ouvre, <b>ne change pas le nom</b> et clique sur <b>Create fork</b>.</p>
+    <h2>Crée ton dossier de vidéos</h2>
+    <p>Un dossier privé à toi, où arriveront tes vidéos finies.</p>
+    <a class="lien" href="https://github.com/new?name=mes-videos-adcloner&amp;visibility=private&amp;description=Mes%20vid%C3%A9os%20AdCloner" target="_blank" rel="noopener">Créer mon dossier</a>
+    <ol>
+      <li>Ne change pas le nom (<code>mes-videos-adcloner</code>) et laisse-le en <b>Private</b>.</li>
+      <li>Active <b>Add README</b>, puis clique sur <b>Create repository</b>.</li>
+    </ol>
+    <p><b>Ton pseudo GitHub</b> (en haut à droite de GitHub, en cliquant sur ta photo) :</p>
+    <input type="text" id="pseudo" autocomplete="off" placeholder="ton-pseudo">
+    <p class="doux" style="font-size:14px">Il sert à préparer ton bouton « Lancer AdCloner » à la fin.</p>
   </section>
 
   <!-- Clés -->
@@ -161,9 +166,9 @@ summary{cursor:pointer;font-weight:700}
     <a class="lien" href="https://claude.ai/code" target="_blank" rel="noopener">Ouvrir claude.ai/code</a>
     <ol>
       <li>Claude te propose de <b>connecter GitHub</b> : accepte.</li>
-      <li>Choisis <b>Only select repositories</b>, sélectionne <code>adcloner-eleves</code>, puis <b>Install</b>.</li>
+      <li>Choisis <b>Only select repositories</b>, sélectionne <code>mes-videos-adcloner</code>, puis <b>Install</b>.</li>
     </ol>
-    <p class="doux">Déjà connecté ? Ajoute <code>adcloner-eleves</code> dans <a href="https://github.com/settings/installations" target="_blank" rel="noopener">GitHub → Applications</a> → Claude → Configure.</p>
+    <p class="doux">Déjà connecté ? Ajoute <code>mes-videos-adcloner</code> dans <a href="https://github.com/settings/installations" target="_blank" rel="noopener">GitHub → Applications</a> → Claude → Configure.</p>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
@@ -271,11 +276,12 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
   <section class="ecran" data-bouton="Claude me dit que tout est ok">
     <span class="partie">Dernière étape</span>
     <h2>Le test</h2>
+    <p>Ce bouton ouvre Claude avec tout déjà choisi : AdCloner, ton dossier de vidéos et ton environnement.</p>
+    <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Vérifie mon installation AdCloner.">Lancer le test</a>
     <ol>
-      <li>Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, choisis le dépôt <b>adcloner-eleves</b> et l'environnement <b>AdCloner</b> (icône nuage).</li>
-      <li>Écris :</li>
+      <li>Vérifie sous la zone de message que <b>deux</b> dépôts sont cochés (<code>adcloner-eleves</code> et <code>mes-videos-adcloner</code>) et l'environnement <b>AdCloner</b>.</li>
+      <li>Envoie le message déjà écrit : « Vérifie mon installation AdCloner. »</li>
     </ol>
-    <div class="bloc"><pre id="test">Vérifie mon installation AdCloner.</pre><button class="copier" data-cible="test">Copier</button></div>
     <p>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire : utilise « Retour » pour y revenir.</p>
   </section>
 
@@ -285,16 +291,13 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
     <h1>Bravo <span class="nom-seul"></span>, AdCloner est prêt</h1>
     <p><b>Pour traduire une pub :</b></p>
     <ol>
-      <li>Dépose la vidéo dans le dossier <code>sources</code> de ton dépôt GitHub : <b>Add file</b> → <b>Upload files</b> → <b>Commit changes</b> (25 Mo max).</li>
-      <li>Sur claude.ai/code (dépôt <b>adcloner-eleves</b>, environnement <b>AdCloner</b>), écris par exemple :</li>
-    </ol>
-    <div class="bloc"><pre id="exemple">Traduis la vidéo sources/ma-pub.mp4 en français. Ma marque : …, mon produit : …, mon site : …</pre><button class="copier" data-cible="exemple">Copier</button></div>
-    <ol start="3">
+      <li><a class="depot-sources" href="#" target="_blank" rel="noopener">Dépose ta vidéo</a> dans ton dossier de vidéos, puis clique sur <b>Commit changes</b> (25 Mo max).</li>
+      <li><a class="lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Traduis la vidéo sources/ma-pub.mp4 en français. Ma marque : …, mon produit : …, mon site : …">Lance AdCloner</a>, puis complète le message déjà écrit (nom de ta vidéo, langue, ta marque…) et envoie-le.</li>
       <li>Claude t'annonce le coût et attend ton <b>ok</b>.</li>
       <li>Environ 15 minutes plus tard, il te donne un <b>lien</b> pour télécharger ta vidéo. Tu peux fermer l'ordinateur en attendant.</li>
     </ol>
-    <div class="astuce"><b>Mise à jour :</b> quand ton formateur annonce une nouvelle version, va sur ton dépôt GitHub et clique sur <b>Sync fork</b> → <b>Update branch</b>.</div>
-    <div class="astuce"><b>Bon à savoir :</b> ta copie et tes vidéos sont visibles par ton formateur, pour t'aider à progresser et améliorer AdCloner.</div>
+    <div class="astuce"><b>Astuce :</b> ajoute cette page à tes favoris, elle s'ouvre directement ici avec tes boutons.</div>
+    <div class="astuce"><b>Mises à jour :</b> rien à faire. Tu utilises toujours la dernière version d'AdCloner.</div>
     <h2 style="font-size:22px;margin-top:26px">Un souci ?</h2>
     <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Revois l'écran « Les réglages » de ton atelier, puis démarre une <b>nouvelle</b> session.</p></details>
     <details><summary>Erreur 401 ou « invalid api key »</summary><p>La clé de ce service est fausse. Supprime son secret dans le coffre et ajoute-le à nouveau. ElevenLabs : la clé commence par <code>sk_</code>.</p></details>
@@ -317,12 +320,21 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
   var suivant=document.getElementById('suivant'), retour=document.getElementById('retour'), prenom=document.getElementById('prenom');
   var i=Math.min(parseInt(lire('ecran'),10)||0, ecrans.length-1);
   prenom.value=lire('prenom');
+  var pseudo=document.getElementById('pseudo'); pseudo.value=lire('pseudo');
 
   function noms(){
     var p=prenom.value.trim();
     document.querySelectorAll('.nom').forEach(function(e){e.textContent=p?p+', ':''});
     document.querySelectorAll('.nom-seul').forEach(function(e){e.textContent=p});
     if(i===0)suivant.disabled=!p;
+    // pseudo GitHub : prépare les boutons « Lancer AdCloner » (deux dépôts + environnement préchoisis) et « Dépose ta vidéo »
+    var g=pseudo.value.trim().replace(/^@/,'').replace(/[^A-Za-z0-9-]/g,'');
+    var depots='contactsyriusmedia-create/adcloner-eleves'+(g?','+g+'/mes-videos-adcloner':'');
+    document.querySelectorAll('.lancer').forEach(function(a){
+      a.href='https://claude.ai/code?repositories='+encodeURIComponent(depots)+'&environment=AdCloner&prompt='+encodeURIComponent(a.dataset.prompt||'');
+    });
+    document.querySelectorAll('.depot-sources').forEach(function(a){a.href=g?'https://github.com/'+g+'/mes-videos-adcloner/upload/main/sources':'https://github.com'});
+    if(ecrans[i]&&ecrans[i].dataset.requis==='pseudo')suivant.disabled=!g;
   }
   function montre(n,haut){
     i=n; ecrire('ecran',String(i));
@@ -338,6 +350,7 @@ for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/set
     if(i===0)setTimeout(function(){prenom.focus()},50);
   }
   prenom.addEventListener('input',function(){ecrire('prenom',prenom.value);noms()});
+  pseudo.addEventListener('input',function(){ecrire('pseudo',pseudo.value);noms()});
   prenom.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&prenom.value.trim())montre(1)});
   suivant.addEventListener('click',function(){if(i<ecrans.length-1)montre(i+1)});
   retour.addEventListener('click',function(){if(i>0)montre(i-1)});

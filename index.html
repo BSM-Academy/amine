@@ -68,6 +68,8 @@ input[type=text]:focus{outline:none;border-color:var(--sauge)}
 .retour{font:500 15px "DM Sans";background:none;border:0;color:var(--gris);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 details{border-top:1px solid var(--trait);padding:12px 0}
 summary{cursor:pointer;font-weight:700}
+.capture{display:block;width:100%;border-radius:12px;border:1px solid var(--trait);margin:10px 0 14px}
+.capture.etroite{max-width:420px}
 .bas{margin-top:auto;padding-top:30px;font-size:13px;color:var(--gris);text-align:center}
 </style>
 </head>
@@ -109,13 +111,24 @@ summary{cursor:pointer;font-weight:700}
     <p class="doux">Tu en as déjà un ? Garde-le et clique sur « C'est fait ».</p>
   </section>
 
-  <section class="ecran" data-bouton="Mon dossier est créé" data-requis="pseudo">
+  <section class="ecran" data-bouton="Mon dossier est créé">
     <span class="partie">GitHub</span>
     <h2>Crée ton dossier de vidéos</h2>
-    <p>Un dossier à toi, où arriveront tes vidéos finies.</p>
+    <p>Un dossier à toi, où arriveront tes vidéos finies. Clique sur le bouton : tout est déjà rempli.</p>
     <a class="lien" href="https://github.com/new?name=mes-videos-adcloner&amp;visibility=public&amp;description=Mes%20vid%C3%A9os%20AdCloner" target="_blank" rel="noopener">Créer mon dossier</a>
-    <p>Tout est déjà rempli. Dans la partie <b>Configuration</b>, passe l'interrupteur <b>Add README</b> (à droite) sur <b>On</b>, puis clique sur <b>Create repository</b>.</p>
-    <p><b>Ton pseudo GitHub</b> (il s'affiche dans l'adresse de ton dossier : github.com/<b>ton-pseudo</b>/mes-videos-adcloner) :</p>
+    <img class="capture" src="img/dossier.jpg" alt="Page GitHub de création du dossier : interrupteur Add README et bouton Create repository entourés">
+    <ol>
+      <li>Clique sur l'interrupteur <b>Add README</b> pour le passer sur <b>On</b>.</li>
+      <li>Clique sur le bouton vert <b>Create repository</b>.</li>
+    </ol>
+  </section>
+
+  <section class="ecran" data-bouton="C'est fait" data-requis="pseudo">
+    <span class="partie">GitHub</span>
+    <h2>Ton pseudo GitHub</h2>
+    <p>Sur la page de ton dossier, ton pseudo est écrit <b>en haut à gauche</b>, juste avant <code>mes-videos-adcloner</code> :</p>
+    <img class="capture" src="img/pseudo.jpg" alt="Haut de la page GitHub du dossier, avec le pseudo entouré">
+    <p>Recopie-le ici :</p>
     <input type="text" id="pseudo" autocomplete="off" placeholder="ton-pseudo">
     <p class="doux" style="font-size:14px">Il sert à préparer ton bouton « Lancer AdCloner » à la fin.</p>
   </section>
@@ -127,33 +140,53 @@ summary{cursor:pointer;font-weight:700}
     <p>Une clé, c'est un long code qui permet à AdCloner d'utiliser ton compte.</p>
     <div class="astuce">Ouvre une <b>note vide</b> sur ton ordinateur : tu y colleras tes clés le temps de l'installation, puis tu la supprimeras.</div>
     <a class="lien" href="https://console.groq.com/keys" target="_blank" rel="noopener">Ouvrir Groq</a>
-    <p>Crée un compte (gratuit), clique sur <b>Create API Key</b>, copie la clé dans ta note. Elle commence par <code>gsk_</code>.</p>
+    <img class="capture" src="img/groq.jpg" alt="Page des clés Groq avec le bouton Create API Key entouré">
+    <ol>
+      <li>Crée ton compte (gratuit) si on te le demande.</li>
+      <li>Clique sur <b>Create API Key</b>, écris <code>AdCloner</code> comme nom, puis valide.</li>
+      <li>Copie la clé affichée (elle commence par <code>gsk_</code>) et colle-la dans ta note.</li>
+    </ol>
   </section>
 
   <section class="ecran" data-bouton="J'ai ma clé ElevenLabs">
     <span class="partie">Tes clés · 2/4</span>
     <h2>Ta clé ElevenLabs</h2>
-    <p>Prends l'abonnement <b>Starter</b> au minimum (il faut le clonage de voix).</p>
-    <a class="lien" href="https://elevenlabs.io/app/settings/api-keys" target="_blank" rel="noopener">Ouvrir ElevenLabs</a>
-    <p>Clique sur <b>Create API Key</b>, copie la clé dans ta note.</p>
-    <div class="attention">Copie bien la <b>clé</b> (elle commence par <code>sk_</code>), pas son identifiant. C'est l'erreur la plus fréquente.</div>
+    <p>Il te faut l'abonnement <b>Starter</b> au minimum (pour le clonage de voix).</p>
+    <a class="lien" href="https://elevenlabs.io/app/developers/api-keys" target="_blank" rel="noopener">Ouvrir ElevenLabs</a>
+    <img class="capture" src="img/elevenlabs.jpg" alt="Page des clés ElevenLabs avec le bouton Create Key entouré">
+    <p>Clique sur <b>Create Key</b>. Une fenêtre s'ouvre à droite :</p>
+    <img class="capture etroite" src="img/elevenlabs-cle.jpg" alt="Fenêtre de création de clé ElevenLabs : nom, interrupteur Restrict Key et bouton Create Key entourés">
+    <ol>
+      <li>Dans <b>Name</b>, écris <code>AdCloner</code>.</li>
+      <li>Clique sur l'interrupteur <b>Restrict Key</b> pour l'<b>éteindre</b>.</li>
+      <li>Clique sur <b>Create Key</b>, puis copie la clé (elle commence par <code>sk_</code>) dans ta note.</li>
+    </ol>
+    <div class="attention">N'oublie pas d'éteindre <b>Restrict Key</b> : sinon la clé ne marchera pour rien.</div>
   </section>
 
   <section class="ecran" data-bouton="J'ai ma clé Replicate">
     <span class="partie">Tes clés · 3/4</span>
     <h2>Ta clé Replicate</h2>
-    <p>Replicate sépare la voix d'origine de la musique : AdCloner garde la musique et le son de la pub, et pose la nouvelle voix par-dessus.</p>
+    <p>Replicate sépare la voix d'origine de la musique : AdCloner garde la musique de la pub et pose la nouvelle voix par-dessus.</p>
     <a class="lien" href="https://replicate.com/account/api-tokens" target="_blank" rel="noopener">Ouvrir Replicate</a>
-    <p>Crée un compte, copie le token dans ta note. Il commence par <code>r8_</code>.</p>
-    <div class="attention">Ajoute une carte dans <a href="https://replicate.com/account/billing" target="_blank" rel="noopener">Billing</a> : sans crédit, la clé ne marche pas. Compte quelques centimes par vidéo.</div>
+    <img class="capture" src="img/replicate.jpg" alt="Page des jetons Replicate : champ du nom, bouton Create token et menu Billing entourés">
+    <ol>
+      <li>Écris <code>AdCloner</code> dans la case, puis clique sur <b>Create token</b>.</li>
+      <li>Copie le jeton (il commence par <code>r8_</code>) dans ta note.</li>
+      <li>Clique sur <b>Billing</b> et ajoute ta carte : sans crédit, la clé ne marche pas (quelques centimes par vidéo).</li>
+    </ol>
   </section>
 
   <section class="ecran" data-bouton="J'ai mes 2 clés Vmake">
     <span class="partie">Tes clés · 4/4</span>
     <h2>Tes clés Vmake</h2>
-    <p>Prends l'abonnement <b>Plus</b> au minimum : c'est obligatoire pour l'API.</p>
-    <a class="lien" href="https://vmake.ai/developers#api-key" target="_blank" rel="noopener">Ouvrir Vmake</a>
-    <p>Dans <b>API Key</b>, copie les <b>deux</b> clés dans ta note : <b>Access Key</b> et <b>Secret Key</b>.</p>
+    <p>Il te faut l'abonnement <b>Plus</b> au minimum : c'est obligatoire pour l'API.</p>
+    <a class="lien" href="https://vmake.ai/developers" target="_blank" rel="noopener">Ouvrir Vmake</a>
+    <img class="capture" src="img/vmake.jpg" alt="Barre du haut de Vmake avec l'onglet API Keys entouré">
+    <ol>
+      <li>Clique sur l'onglet <b>API Keys</b> en haut, et connecte-toi si on te le demande.</li>
+      <li>Copie les <b>deux</b> clés dans ta note : <b>Access Key</b> et <b>Secret Key</b>.</li>
+    </ol>
   </section>
 
   <!-- Claude -->
@@ -163,43 +196,41 @@ summary{cursor:pointer;font-weight:700}
     <a class="lien" href="https://claude.ai/code" target="_blank" rel="noopener">Ouvrir claude.ai/code</a>
     <ol>
       <li>Claude te propose de <b>connecter GitHub</b> : accepte.</li>
-      <li>Choisis <b>Only select repositories</b>, sélectionne <code>mes-videos-adcloner</code>, puis <b>Install</b>.</li>
+      <li>GitHub te demande où installer Claude : laisse <b>All repositories</b> coché, comme ici, puis clique sur le bouton vert <b>Install</b>.</li>
     </ol>
-    <p class="doux">Déjà connecté ? Ajoute <code>mes-videos-adcloner</code> dans <a href="https://github.com/settings/installations" target="_blank" rel="noopener">GitHub → Applications</a> → Claude → Configure.</p>
+    <img class="capture" src="img/github-claude.jpg" alt="Réglage GitHub Repository access avec All repositories entouré">
   </section>
 
-  <section class="ecran" data-bouton="C'est fait">
-    <span class="partie">Ton atelier · 1/4</span>
+  <section class="ecran" data-bouton="La fenêtre est ouverte">
+    <span class="partie">Ton atelier · 1/3</span>
     <h2>Crée ton environnement</h2>
-    <p>L'environnement, c'est l'atelier où Claude travaille.</p>
+    <p>L'environnement, c'est l'atelier où Claude travaille. Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, tout en bas sous la zone de message :</p>
+    <img class="capture etroite" src="img/env-nouveau.jpg" alt="Bouton Cloud et menu Nouvel environnement entourés">
     <ol>
-      <li>Sur claude.ai/code, au-dessus de la zone de message, clique sur l'<b>icône nuage</b> (elle affiche « Default »).</li>
-      <li>Clique sur <b>Cloud</b>, puis <b>Add cloud environment</b>.</li>
-      <li>Dans <b>Name</b>, écris <code>AdCloner</code>.</li>
+      <li>Clique sur le bouton avec le <b>petit nuage</b>.</li>
+      <li>Clique sur <b>Nouvel environnement</b>.</li>
     </ol>
-    <p class="doux">Garde la fenêtre ouverte : on la remplit dans les 3 écrans suivants.</p>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
-    <span class="partie">Ton atelier · 2/4</span>
-    <h2>Les sites autorisés</h2>
-    <p>Dans <b>Network access</b>, choisis <b>Custom</b>. Dans <b>Allowed domains</b>, colle :</p>
-    <div class="bloc"><pre id="domaines">api.groq.com
-api.elevenlabs.io
-api.replicate.com
-replicate.delivery
-*.replicate.delivery
-*.vmake.ai
-*.aliyuncs.com
-*.fbcdn.net
-medias.trendtrack.io</pre><button class="copier" data-cible="domaines">Copier</button></div>
-    <p>Puis <b>coche</b> la case <b>Also include default list of common package managers</b>.</p>
+    <span class="partie">Ton atelier · 2/3</span>
+    <h2>Le nom et l'accès Internet</h2>
+    <img class="capture etroite" src="img/env-nom-reseau.jpg" alt="Formulaire Nouvel environnement : champ Nom et option Complet entourés">
+    <ol>
+      <li>Dans <b>Nom</b>, écris <code>AdCloner</code>.</li>
+      <li>Clique sur <b>Accès réseau</b> et choisis <b>Complet</b>.</li>
+    </ol>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
-    <span class="partie">Ton atelier · 3/4</span>
-    <h2>Les réglages</h2>
-    <p>Dans <b>Environment variables</b>, colle ce bloc :</p>
+    <span class="partie">Ton atelier · 3/3</span>
+    <h2>Le démarrage et les réglages</h2>
+    <p>Fais défiler la fenêtre vers le bas :</p>
+    <img class="capture etroite" src="img/env-script-variables.jpg" alt="Champs Script de configuration et Variables d'environnement entourés">
+    <p><b>1. Dans « Script de configuration »</b>, colle :</p>
+    <div class="bloc"><pre id="script">#!/bin/bash
+for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div>
+    <p><b>2. Dans « Variables d'environnement »</b>, colle :</p>
     <div class="bloc"><pre id="variables">GROQ_API_KEY=cloud
 ELEVENLABS_API_KEY=cloud
 REPLICATE_API_TOKEN=cloud
@@ -209,75 +240,64 @@ ADCLONER_WHISPER=groq
 ADCLONER_DEMUCS=replicate
 BASH_DEFAULT_TIMEOUT_MS=600000
 BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">Copier</button></div>
-    <div class="attention">Remplace les deux textes en majuscules par tes <b>clés Vmake</b> (Access Key, puis Secret Key), sans espace après le <code>=</code>.</div>
-    <p class="doux">Les <code>=cloud</code> sont normaux : tes autres clés vont dans un coffre juste après.</p>
-  </section>
-
-  <section class="ecran" data-bouton="C'est fait">
-    <span class="partie">Ton atelier · 4/4</span>
-    <h2>Le démarrage</h2>
-    <p>Dans <b>Setup script</b>, colle :</p>
-    <div class="bloc"><pre id="script">#!/bin/bash
-for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div>
-    <p>Puis clique sur <b>Create environment</b>. 🎉</p>
+    <div class="attention">Dans ce qui est collé, remplace les deux textes en majuscules par tes <b>clés Vmake</b> : l'Access Key après <code>MT_AK=</code>, la Secret Key après <code>MT_SK=</code>, sans espace.</div>
+    <p><b>3.</b> Clique sur <b>Ajouter un environnement</b> en bas (ou <b>Enregistrer les modifications</b>).</p>
   </section>
 
   <!-- Coffre -->
   <section class="ecran" data-bouton="C'est fait">
     <span class="partie">Le coffre · 1/3</span>
     <h2>Range ta clé Groq</h2>
-    <p>Le coffre (« secrets ») garde tes clés à l'abri : Claude peut s'en servir, mais pas les lire.</p>
+    <p>Le coffre (« Secrets réseau ») garde tes clés à l'abri : Claude peut s'en servir, mais jamais les lire.</p>
+    <p>Rouvre ton environnement (bouton nuage → <b>Cloud</b> → passe la souris sur <b>AdCloner</b> → roue dentée), puis clique sur <b>Ajouter un secret</b> :</p>
+    <img class="capture etroite" src="img/env-ajouter-secret.jpg" alt="Bouton Ajouter un secret entouré">
+    <img class="capture etroite" src="img/secret-groq.jpg" alt="Formulaire Ajouter un secret rempli pour Groq">
     <ol>
-      <li>Rouvre l'icône nuage → <b>Cloud</b>, survole <b>AdCloner</b>, clique sur la <b>roue dentée</b>.</li>
-      <li>Dans <b>Network secrets</b>, clique sur <b>Add secret</b> et remplis :</li>
+      <li><b>Nom</b> : <code>Groq</code></li>
+      <li><b>Sites web autorisés</b> : tape <code>api.groq.com</code> puis appuie sur <b>Entrée</b>.</li>
+      <li><b>Valeur</b> : colle ta clé Groq (laisse Authorization et Bearer tels quels).</li>
+      <li>Clique sur <b>Ajouter</b>.</li>
     </ol>
-    <div class="champs">
-      <div class="champ"><span>Name</span><b>Groq</b></div>
-      <div class="champ"><span>Allowed websites</span><code>api.groq.com</code></div>
-      <div class="champ"><span>Header Name</span><code>Authorization</code></div>
-      <div class="champ"><span>Prefix</span><code>Bearer</code></div>
-      <div class="champ"><span>Value</span><b>ta clé Groq</b></div>
-    </div>
-    <p>Clique sur <b>Add</b>.</p>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
     <span class="partie">Le coffre · 2/3</span>
     <h2>Range ta clé ElevenLabs</h2>
-    <p><b>Add secret</b> à nouveau :</p>
-    <div class="champs">
-      <div class="champ"><span>Name</span><b>ElevenLabs</b></div>
-      <div class="champ"><span>Allowed websites</span><code>api.elevenlabs.io</code></div>
-      <div class="champ"><span>Header Name</span><code>xi-api-key</code></div>
-      <div class="champ"><span>Prefix</span><b>vide</b></div>
-      <div class="champ"><span>Value</span><b>ta clé ElevenLabs</b></div>
-    </div>
-    <div class="attention">Ici c'est différent : remplace <code>Authorization</code> par <code>xi-api-key</code>, et <b>efface</b> le mot Bearer.</div>
+    <p>Clique encore sur <b>Ajouter un secret</b>. Attention, celui-ci a <b>deux cases différentes</b> (3 et 4) :</p>
+    <img class="capture etroite" src="img/secret-elevenlabs.jpg" alt="Formulaire Ajouter un secret rempli pour ElevenLabs">
+    <ol>
+      <li><b>Nom</b> : <code>ElevenLabs</code></li>
+      <li><b>Sites web autorisés</b> : tape <code>api.elevenlabs.io</code> puis <b>Entrée</b>.</li>
+      <li>Sous « En-têtes personnalisés », remplace <code>Authorization</code> par <code>xi-api-key</code>.</li>
+      <li><b>Efface</b> le mot <code>Bearer</code> : la case Préfixe doit être vide.</li>
+      <li><b>Valeur</b> : colle ta clé ElevenLabs.</li>
+      <li>Clique sur <b>Ajouter</b>.</li>
+    </ol>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
     <span class="partie">Le coffre · 3/3</span>
     <h2>Range ta clé Replicate</h2>
-    <p><b>Add secret</b> une dernière fois :</p>
-    <div class="champs">
-      <div class="champ"><span>Name</span><b>Replicate</b></div>
-      <div class="champ"><span>Allowed websites</span><code>api.replicate.com</code></div>
-      <div class="champ"><span>Header Name</span><code>Authorization</code></div>
-      <div class="champ"><span>Prefix</span><code>Bearer</code></div>
-      <div class="champ"><span>Value</span><b>ta clé Replicate</b></div>
-    </div>
-    <p>Tes clés sont à l'abri : <b>supprime ta note</b>.</p>
+    <p>Une dernière fois <b>Ajouter un secret</b>, exactement comme pour Groq :</p>
+    <ol>
+      <li><b>Nom</b> : <code>Replicate</code></li>
+      <li><b>Sites web autorisés</b> : tape <code>api.replicate.com</code> puis <b>Entrée</b>.</li>
+      <li><b>Valeur</b> : colle ta clé Replicate.</li>
+      <li>Clique sur <b>Ajouter</b>, puis sur <b>Enregistrer les modifications</b>.</li>
+    </ol>
+    <p>Tes clés sont à l'abri : tu peux <b>supprimer ta note</b>.</p>
   </section>
 
   <!-- Test -->
   <section class="ecran" data-bouton="Claude me dit que tout est ok">
     <span class="partie">Dernière étape</span>
     <h2>Le test</h2>
-    <p>Ce bouton ouvre Claude avec tout déjà choisi : AdCloner, ton dossier de vidéos et ton environnement.</p>
+    <p>Ce bouton ouvre Claude avec tout déjà choisi :</p>
     <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Vérifie mon installation AdCloner.">Lancer le test</a>
+    <img class="capture" src="img/lancer.jpg" alt="Zone de message avec l'environnement AdCloner, les deux dépôts et le bouton Envoyer entourés">
     <ol>
-      <li>Vérifie sous la zone de message que <b>deux</b> dépôts sont cochés (<code>adcloner-eleves</code> et <code>mes-videos-adcloner</code>) et l'environnement <b>AdCloner</b>.</li>
-      <li>Envoie le message déjà écrit : « Vérifie mon installation AdCloner. »</li>
+      <li>Vérifie en bas : <b>AdCloner</b> et <b>adcloner… +1</b> (tes deux dossiers).</li>
+      <li>Le message est déjà écrit : clique sur la <b>flèche d'envoi</b>.</li>
     </ol>
     <p>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire : utilise « Retour » pour y revenir.</p>
   </section>

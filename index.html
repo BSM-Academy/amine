@@ -4,168 +4,193 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Installer AdCloner</title>
-<meta name="description" content="Le guide pas à pas pour installer AdCloner dans Claude, sans rien installer sur ton ordinateur.">
+<meta name="description" content="Le tuto pas à pas pour installer AdCloner dans Claude, sans rien installer sur ton ordinateur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --sauge:#9DB89A; --sauge-fond:#D5DECF; --sauge-pale:#EEF2EB; --noir:#0E100E; --gris:#4A524A; --trait:#C3CEBD;
-  --carte:#FFFFFF; --code:#0E100E; --code-texte:#E8EFE5; --alerte:#E5484D; --ok:#3F7A3B;
-  --fond:var(--sauge-pale); --texte:var(--noir);
+  --sauge:#9DB89A; --sauge-fond:#D5DECF; --noir:#0E100E; --alerte:#E5484D;
+  --fond:#EEF2EB; --texte:#0E100E; --gris:#4A524A; --trait:#C3CEBD; --carte:#FFFFFF; --code:#0E100E; --code-texte:#E8EFE5;
+  --bouton:#0E100E; --bouton-texte:#FFFFFF;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --fond:#121512; --texte:#E8EFE5; --carte:#1B201B; --gris:#A9B5A6; --trait:#2E362D; --sauge-fond:#26302A; --code:#0A0C0A;
+    --fond:#121512; --texte:#E8EFE5; --gris:#A9B5A6; --trait:#2E362D; --carte:#1B201B; --sauge-fond:#26302A; --code:#0A0C0A;
+    --bouton:#9DB89A; --bouton-texte:#0E100E;
   }
 }
-:root[data-theme="dark"]{ --fond:#121512; --texte:#E8EFE5; --carte:#1B201B; --gris:#A9B5A6; --trait:#2E362D; --sauge-fond:#26302A; --code:#0A0C0A; }
+:root[data-theme="dark"]{ --fond:#121512; --texte:#E8EFE5; --gris:#A9B5A6; --trait:#2E362D; --carte:#1B201B; --sauge-fond:#26302A; --code:#0A0C0A; --bouton:#9DB89A; --bouton-texte:#0E100E; }
 *{box-sizing:border-box}
-body{margin:0;background:var(--fond);color:var(--texte);font:16px/1.6 "DM Sans",system-ui,sans-serif}
-.page{max-width:820px;margin:0 auto;padding:32px 16px 80px}
-h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.2;margin:0}
-h1{font-size:clamp(30px,6vw,44px);letter-spacing:-.02em}
-h2{font-size:22px}
+html,body{height:100%}
+body{margin:0;background:var(--fond);color:var(--texte);font:17px/1.6 "DM Sans",system-ui,sans-serif}
+.page{max-width:640px;margin:0 auto;padding:20px 16px 40px;min-height:100%;display:flex;flex-direction:column}
+.haut{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.logo{font:700 15px "Space Grotesk";letter-spacing:.02em;white-space:nowrap}
+.jauge{flex:1;height:8px;background:var(--sauge-fond);border-radius:99px;overflow:hidden}
+.jauge i{display:block;height:100%;width:0;background:var(--sauge);transition:width .4s ease}
+.ecran{display:none;animation:entre .35s ease}
+.ecran.actif{display:block}
+@keyframes entre{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ecran{animation:none}.jauge i{transition:none}}
+.partie{display:inline-block;background:var(--sauge);color:var(--noir);font:700 12px "Space Grotesk";text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:99px;margin-bottom:14px}
+h1,h2{font-family:"Space Grotesk",sans-serif;line-height:1.15;margin:0 0 14px;letter-spacing:-.01em}
+h1{font-size:clamp(30px,7vw,42px)}
+h2{font-size:clamp(25px,5.5vw,32px)}
+p{margin:0 0 14px}
+.doux{color:var(--gris)}
 a{color:inherit;text-decoration-color:var(--sauge);text-underline-offset:3px;text-decoration-thickness:2px}
-.chapeau{color:var(--gris);font-size:18px;margin:12px 0 28px}
-.badge{display:inline-block;background:var(--sauge);color:var(--noir);font:700 12px "Space Grotesk";text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:99px;margin-bottom:14px}
-.carte{background:var(--carte);border:1px solid var(--trait);border-radius:16px;padding:22px;margin:16px 0}
-.moi{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:560px){.moi{grid-template-columns:1fr}}
-label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
-input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--trait);background:var(--fond);color:var(--texte)}
-.aide{font-size:13px;color:var(--gris);margin-top:4px}
-.barre{position:sticky;top:0;z-index:5;background:var(--fond);padding:10px 0;margin:0 0 8px}
-.jauge{height:8px;background:var(--sauge-fond);border-radius:99px;overflow:hidden}
-.jauge i{display:block;height:100%;width:0;background:var(--sauge);transition:width .3s}
-.jauge-texte{font-size:13px;color:var(--gris);margin-top:6px}
-.etape{position:relative}
-.etape header{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
-.num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--sauge-fond);display:grid;place-items:center;font:700 17px "Space Grotesk"}
-.etape.faite .num{background:var(--sauge);color:var(--noir)}
-.duree{font-size:13px;color:var(--gris);margin-top:2px}
-ol,ul{padding-left:22px;margin:8px 0}
-li{margin:6px 0}
-.bloc{position:relative;margin:10px 0}
-.bloc pre{background:var(--code);color:var(--code-texte);border-radius:12px;padding:14px 16px;padding-right:96px;margin:0;overflow-x:auto;font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
-.copier{position:absolute;top:8px;right:8px;font:700 13px "DM Sans";border:0;border-radius:8px;padding:7px 12px;background:var(--sauge);color:var(--noir);cursor:pointer}
-.copier.ok{background:#fff}
-.attention{border-left:4px solid var(--alerte);background:var(--carte);padding:10px 14px;border-radius:8px;margin:12px 0}
-.astuce{border-left:4px solid var(--sauge);background:var(--sauge-fond);padding:10px 14px;border-radius:8px;margin:12px 0}
-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;display:block;overflow-x:auto}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--trait);vertical-align:top;white-space:nowrap}
-th{font-family:"Space Grotesk";font-size:13px}
-code{font:13.5px ui-monospace,Menlo,monospace;background:var(--sauge-fond);padding:1px 6px;border-radius:6px}
-.fait{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--trait);font-weight:700;cursor:pointer}
-.fait input{width:22px;height:22px;accent-color:var(--sauge)}
-.bouton{display:inline-block;background:var(--noir);color:#fff;text-decoration:none;font-weight:700;padding:10px 16px;border-radius:10px;margin:6px 6px 6px 0}
-:root[data-theme="dark"] .bouton{background:var(--sauge);color:var(--noir)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bouton{background:var(--sauge);color:var(--noir)}}
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
-.service{border:1px solid var(--trait);border-radius:12px;padding:12px}
-.service b{font-family:"Space Grotesk"}
-.service span{display:block;font-size:13px;color:var(--gris)}
+ol{padding-left:22px;margin:0 0 14px}
+li{margin:8px 0}
+code{font:14.5px ui-monospace,Menlo,monospace;background:var(--sauge-fond);padding:1px 6px;border-radius:6px}
+input[type=text]{width:100%;font:inherit;font-size:20px;padding:14px 16px;border-radius:12px;border:2px solid var(--trait);background:var(--carte);color:var(--texte);margin:6px 0 4px}
+input[type=text]:focus{outline:none;border-color:var(--sauge)}
+.bloc{position:relative;margin:12px 0 16px}
+.bloc pre{background:var(--code);color:var(--code-texte);border-radius:12px;padding:14px 16px;padding-right:100px;margin:0;overflow-x:auto;font:14.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
+.copier{position:absolute;top:8px;right:8px;font:700 14px "DM Sans";border:0;border-radius:8px;padding:8px 14px;background:var(--sauge);color:var(--noir);cursor:pointer}
+.attention{border-left:4px solid var(--alerte);background:var(--carte);padding:12px 14px;border-radius:8px;margin:14px 0;font-size:16px}
+.astuce{border-left:4px solid var(--sauge);background:var(--sauge-fond);padding:12px 14px;border-radius:8px;margin:14px 0;font-size:16px}
+.champs{background:var(--carte);border:1px solid var(--trait);border-radius:12px;padding:6px 16px;margin:12px 0 16px}
+.champ{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--trait);flex-wrap:wrap}
+.champ:last-child{border-bottom:0}
+.champ span{color:var(--gris)}
+.lien{display:inline-block;background:var(--carte);border:2px solid var(--noir);color:var(--texte);text-decoration:none;font-weight:700;padding:11px 18px;border-radius:12px;margin:4px 0 14px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lien{border-color:var(--sauge)}}
+:root[data-theme="dark"] .lien{border-color:var(--sauge)}
+.lien::after{content:" ↗"}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}
+.service{background:var(--carte);border:1px solid var(--trait);border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.4}
+.service b{display:block;font-family:"Space Grotesk"}
+.service span{color:var(--gris)}
+.actions{display:flex;align-items:center;gap:16px;margin-top:22px}
+.suivant{font:700 18px "DM Sans";background:var(--bouton);color:var(--bouton-texte);border:0;border-radius:14px;padding:15px 26px;cursor:pointer}
+.suivant:disabled{opacity:.35;cursor:not-allowed}
+.retour{font:500 15px "DM Sans";background:none;border:0;color:var(--gris);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 details{border-top:1px solid var(--trait);padding:12px 0}
 summary{cursor:pointer;font-weight:700}
-footer{color:var(--gris);font-size:13px;text-align:center;margin-top:40px}
+.bas{margin-top:auto;padding-top:30px;font-size:13px;color:var(--gris);text-align:center}
 </style>
 </head>
 <body>
 <main class="page">
-  <span class="badge">Guide d'installation</span>
-  <h1 id="titre">Installe AdCloner en 20 minutes</h1>
-  <p class="chapeau">Tu vas brancher AdCloner sur ton compte Claude. Ensuite, pour traduire une pub, tu n'auras plus qu'à écrire une phrase. Rien ne s'installe sur ton ordinateur : tout tourne dans le cloud de Claude.</p>
+  <div class="haut"><span class="logo">AdCloner</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
 
-  <section class="carte">
-    <div class="moi">
-      <div><label for="prenom">Ton prénom</label><input type="text" id="prenom" autocomplete="given-name" placeholder="Ex. Sarah"></div>
-      <div><label for="pseudo">Ton pseudo GitHub</label><input type="text" id="pseudo" autocomplete="off" placeholder="À remplir à l'étape 2"><div class="aide">Sert à créer tes liens personnels plus bas.</div></div>
-    </div>
-    <p class="aide" style="margin-top:12px">Ton avancement est gardé sur ce navigateur : tu peux fermer la page et revenir. <b>Cette page ne te demandera jamais tes clés.</b></p>
+  <!-- Accueil -->
+  <section class="ecran" data-bouton="C'est parti">
+    <span class="partie">Installation</span>
+    <h1>On installe AdCloner ensemble</h1>
+    <p>Une petite étape à la fois, environ 20 minutes en tout. Rien ne s'installe sur ton ordinateur : tout tourne dans le cloud de Claude.</p>
+    <p><b>Comment tu t'appelles ?</b></p>
+    <input type="text" id="prenom" autocomplete="given-name" placeholder="Ton prénom">
+    <p class="doux" style="font-size:14px;margin-top:8px">Ton avancement est gardé sur ce navigateur : tu peux fermer la page et revenir plus tard.</p>
   </section>
 
-  <div class="barre"><div class="jauge"><i id="jauge"></i></div><div class="jauge-texte" id="jauge-texte">0 étape sur 8</div></div>
-
-  <!-- 1 -->
-  <section class="carte etape" data-etape="1">
-    <header><div class="num">1</div><div><h2>Avant de commencer</h2><div class="duree">2 min · sur ordinateur</div></div></header>
-    <p>Fais l'installation sur un <b>ordinateur</b> (pas sur téléphone). Ensuite, tu pourras lancer des vidéos depuis ton téléphone aussi.</p>
-    <p>AdCloner utilise 5 services. Tu as un compte à toi sur chacun, et tu paies seulement ce que tu consommes :</p>
+  <section class="ecran" data-bouton="J'ai Claude Pro, on continue">
+    <span class="partie">Avant de commencer</span>
+    <h2><span class="nom"></span>tu auras besoin de 5 services</h2>
+    <p>Un compte à toi sur chacun. Tu paies seulement ce que tu utilises.</p>
     <div class="services">
-      <div class="service"><b>Claude Pro</b><span>Le cerveau. Abonnement Pro ou Max obligatoire.</span></div>
-      <div class="service"><b>ElevenLabs</b><span>La voix. Abonnement Starter minimum (clonage de voix).</span></div>
-      <div class="service"><b>Vmake</b><span>Efface le texte à l'écran. Abonnement Plus minimum pour l'API.</span></div>
-      <div class="service"><b>Replicate</b><span>Sépare voix et musique. Quelques centimes par vidéo.</span></div>
-      <div class="service"><b>Groq</b><span>Transcrit la voix. Gratuit.</span></div>
+      <div class="service"><b>Claude Pro</b><span>le cerveau (Pro ou Max)</span></div>
+      <div class="service"><b>ElevenLabs</b><span>la voix (Starter minimum)</span></div>
+      <div class="service"><b>Vmake</b><span>efface le texte (Plus minimum)</span></div>
+      <div class="service"><b>Replicate</b><span>quelques centimes par vidéo</span></div>
+      <div class="service"><b>Groq</b><span>la transcription, gratuit</span></div>
+      <div class="service"><b>GitHub</b><span>où arrivent tes vidéos, gratuit</span></div>
     </div>
-    <div class="astuce">Ouvre une note vide sur ton ordinateur (Notes, Bloc-notes) : tu y colleras tes clés au fur et à mesure, le temps de l'installation. Tu la supprimeras à la fin.</div>
-    <label class="fait"><input type="checkbox"> J'ai Claude Pro et je suis sur ordinateur</label>
+    <p>Fais l'installation sur un <b>ordinateur</b>. Après, tu pourras aussi lancer des vidéos depuis ton téléphone.</p>
   </section>
 
-  <!-- 2 -->
-  <section class="carte etape" data-etape="2">
-    <header><div class="num">2</div><div><h2>Ton compte GitHub et l'accès à AdCloner</h2><div class="duree">5 min · puis attendre l'invitation</div></div></header>
-    <p>GitHub, c'est là où vit AdCloner, et là où tu retrouveras tes vidéos finies.</p>
+  <!-- GitHub -->
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">GitHub</span>
+    <h2>Crée ton compte GitHub</h2>
+    <p>C'est là que vit AdCloner, et là que tu retrouveras tes vidéos finies.</p>
+    <a class="lien" href="https://github.com/signup" target="_blank" rel="noopener">Créer mon compte GitHub</a>
+    <p class="doux">Tu en as déjà un ? Garde-le et clique sur « C'est fait ».</p>
+  </section>
+
+  <section class="ecran" data-bouton="J'ai accepté l'invitation">
+    <span class="partie">GitHub</span>
+    <h2>Demande ton accès</h2>
     <ol>
-      <li>Crée un compte gratuit sur <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> (si tu en as déjà un, garde-le).</li>
-      <li>Écris ton <b>pseudo GitHub</b> dans la case en haut de cette page.</li>
-      <li><b>Envoie ton pseudo à ton formateur.</b> Il t'invite sur AdCloner.</li>
-      <li>Tu reçois un e-mail de GitHub : clique sur <b>View invitation</b> puis <b>Accept invitation</b>.</li>
+      <li><b>Envoie ton pseudo GitHub à ton formateur.</b> Il t'invite sur AdCloner.</li>
+      <li>Tu reçois un e-mail de GitHub : clique sur <b>View invitation</b>, puis <b>Accept invitation</b>.</li>
     </ol>
-    <label class="fait"><input type="checkbox"> J'ai accepté l'invitation</label>
+    <p class="doux">Ton pseudo est affiché en haut à droite de GitHub quand tu cliques sur ta photo.</p>
   </section>
 
-  <!-- 3 -->
-  <section class="carte etape" data-etape="3">
-    <header><div class="num">3</div><div><h2>Crée ta copie d'AdCloner</h2><div class="duree">1 min</div></div></header>
-    <p>Tu crées ta propre copie (un « fork ») : c'est ton AdCloner à toi, où arriveront tes vidéos.</p>
-    <a class="bouton" href="https://github.com/contactsyriusmedia-create/adcloner-eleves/fork" target="_blank" rel="noopener">Créer ma copie sur GitHub</a>
+  <section class="ecran" data-bouton="Ma copie est créée">
+    <span class="partie">GitHub</span>
+    <h2>Crée ta copie d'AdCloner</h2>
+    <p>C'est ton AdCloner à toi : tes vidéos arriveront dedans.</p>
+    <a class="lien" href="https://github.com/contactsyriusmedia-create/adcloner-eleves/fork" target="_blank" rel="noopener">Créer ma copie</a>
+    <p>Sur la page qui s'ouvre, <b>ne change pas le nom</b> et clique sur <b>Create fork</b>.</p>
+  </section>
+
+  <!-- Clés -->
+  <section class="ecran" data-bouton="J'ai ma clé Groq">
+    <span class="partie">Tes clés · 1/4</span>
+    <h2>Ta clé Groq</h2>
+    <p>Une clé, c'est un long code qui permet à AdCloner d'utiliser ton compte.</p>
+    <div class="astuce">Ouvre une <b>note vide</b> sur ton ordinateur : tu y colleras tes clés le temps de l'installation, puis tu la supprimeras.</div>
+    <a class="lien" href="https://console.groq.com/keys" target="_blank" rel="noopener">Ouvrir Groq</a>
+    <p>Crée un compte (gratuit), clique sur <b>Create API Key</b>, copie la clé dans ta note. Elle commence par <code>gsk_</code>.</p>
+  </section>
+
+  <section class="ecran" data-bouton="J'ai ma clé ElevenLabs">
+    <span class="partie">Tes clés · 2/4</span>
+    <h2>Ta clé ElevenLabs</h2>
+    <p>Prends l'abonnement <b>Starter</b> au minimum (il faut le clonage de voix).</p>
+    <a class="lien" href="https://elevenlabs.io/app/settings/api-keys" target="_blank" rel="noopener">Ouvrir ElevenLabs</a>
+    <p>Clique sur <b>Create API Key</b>, copie la clé dans ta note.</p>
+    <div class="attention">Copie bien la <b>clé</b> (elle commence par <code>sk_</code>), pas son identifiant. C'est l'erreur la plus fréquente.</div>
+  </section>
+
+  <section class="ecran" data-bouton="J'ai ma clé Replicate">
+    <span class="partie">Tes clés · 3/4</span>
+    <h2>Ta clé Replicate</h2>
+    <a class="lien" href="https://replicate.com/account/api-tokens" target="_blank" rel="noopener">Ouvrir Replicate</a>
+    <p>Crée un compte, copie le token dans ta note. Il commence par <code>r8_</code>.</p>
+    <div class="attention">Ajoute une carte dans <a href="https://replicate.com/account/billing" target="_blank" rel="noopener">Billing</a> : sans crédit, la clé ne marche pas. Compte quelques centimes par vidéo.</div>
+  </section>
+
+  <section class="ecran" data-bouton="J'ai mes 2 clés Vmake">
+    <span class="partie">Tes clés · 4/4</span>
+    <h2>Tes clés Vmake</h2>
+    <p>Prends l'abonnement <b>Plus</b> au minimum : c'est obligatoire pour l'API.</p>
+    <a class="lien" href="https://vmake.ai/developers#api-key" target="_blank" rel="noopener">Ouvrir Vmake</a>
+    <p>Dans <b>API Key</b>, copie les <b>deux</b> clés dans ta note : <b>Access Key</b> et <b>Secret Key</b>.</p>
+  </section>
+
+  <!-- Claude -->
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Claude</span>
+    <h2>Connecte Claude à GitHub</h2>
+    <a class="lien" href="https://claude.ai/code" target="_blank" rel="noopener">Ouvrir claude.ai/code</a>
     <ol>
-      <li>Sur la page qui s'ouvre, <b>ne change pas le nom</b> (<code>adcloner-eleves</code>).</li>
-      <li>Clique sur <b>Create fork</b>.</li>
-      <li>Tu arrives sur <span id="lien-depot">ton dépôt <code>ton-pseudo/adcloner-eleves</code></span>. Garde cet onglet ouvert.</li>
-    </ol>
-    <label class="fait"><input type="checkbox"> Ma copie est créée</label>
-  </section>
-
-  <!-- 4 -->
-  <section class="carte etape" data-etape="4">
-    <header><div class="num">4</div><div><h2>Récupère tes 5 clés</h2><div class="duree">8 min</div></div></header>
-    <p>Une clé, c'est un long code qui permet à AdCloner d'utiliser ton compte. Pour chaque service : crée un compte, puis copie la clé dans ta note.</p>
-    <table>
-      <tr><th>Service</th><th>Où trouver la clé</th><th>À quoi elle ressemble</th></tr>
-      <tr><td><b>Groq</b></td><td><a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a> → <b>Create API Key</b></td><td><code>gsk_…</code></td></tr>
-      <tr><td><b>ElevenLabs</b></td><td><a href="https://elevenlabs.io/app/settings/api-keys" target="_blank" rel="noopener">elevenlabs.io → Settings → API Keys</a> → <b>Create API Key</b></td><td><code>sk_…</code></td></tr>
-      <tr><td><b>Replicate</b></td><td><a href="https://replicate.com/account/api-tokens" target="_blank" rel="noopener">replicate.com/account/api-tokens</a></td><td><code>r8_…</code></td></tr>
-      <tr><td><b>Vmake</b> (2 clés)</td><td><a href="https://vmake.ai/developers#api-key" target="_blank" rel="noopener">vmake.ai/developers</a> → <b>API Key</b></td><td>Access Key + Secret Key</td></tr>
-    </table>
-    <div class="attention"><b>ElevenLabs :</b> copie bien la <b>clé</b> (elle commence par <code>sk_</code>), pas son identifiant. C'est l'erreur la plus fréquente.</div>
-    <div class="attention"><b>Crédit :</b> une clé ne marche que si le compte a du crédit. Sur Replicate, ajoute une carte dans <a href="https://replicate.com/account/billing" target="_blank" rel="noopener">Billing</a>. Sur ElevenLabs et Vmake, prends l'abonnement indiqué à l'étape 1.</div>
-    <label class="fait"><input type="checkbox"> J'ai mes 5 clés dans ma note</label>
-  </section>
-
-  <!-- 5 -->
-  <section class="carte etape" data-etape="5">
-    <header><div class="num">5</div><div><h2>Connecte Claude à GitHub</h2><div class="duree">2 min</div></div></header>
-    <ol>
-      <li>Ouvre <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> et connecte-toi.</li>
       <li>Claude te propose de <b>connecter GitHub</b> : accepte.</li>
-      <li>GitHub te demande où installer l'application Claude : choisis <b>Only select repositories</b>, puis sélectionne <code>adcloner-eleves</code>. Clique sur <b>Install</b>.</li>
+      <li>Choisis <b>Only select repositories</b>, sélectionne <code>adcloner-eleves</code>, puis <b>Install</b>.</li>
     </ol>
-    <div class="astuce">Déjà connecté à GitHub sur Claude ? Ajoute simplement <code>adcloner-eleves</code> dans <a href="https://github.com/settings/installations" target="_blank" rel="noopener">GitHub → Settings → Applications</a> → Claude → <b>Configure</b>.</div>
-    <label class="fait"><input type="checkbox"> Claude voit mon dépôt adcloner-eleves</label>
+    <p class="doux">Déjà connecté ? Ajoute <code>adcloner-eleves</code> dans <a href="https://github.com/settings/installations" target="_blank" rel="noopener">GitHub → Applications</a> → Claude → Configure.</p>
   </section>
 
-  <!-- 6 -->
-  <section class="carte etape" data-etape="6">
-    <header><div class="num">6</div><div><h2>Crée ton environnement AdCloner</h2><div class="duree">4 min</div></div></header>
-    <p>L'environnement, c'est l'atelier où Claude travaille : quels sites il peut joindre, et ce qu'il prépare au démarrage.</p>
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Ton atelier · 1/4</span>
+    <h2>Crée ton environnement</h2>
+    <p>L'environnement, c'est l'atelier où Claude travaille.</p>
     <ol>
-      <li>Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, juste au-dessus de la zone de message, clique sur l'<b>icône en forme de nuage</b> (elle affiche « Default »).</li>
+      <li>Sur claude.ai/code, au-dessus de la zone de message, clique sur l'<b>icône nuage</b> (elle affiche « Default »).</li>
       <li>Clique sur <b>Cloud</b>, puis <b>Add cloud environment</b>.</li>
-      <li><b>Name</b> : écris <code>AdCloner</code>.</li>
-      <li><b>Network access</b> : choisis <b>Custom</b>. Dans <b>Allowed domains</b>, colle :
-        <div class="bloc"><pre id="domaines">api.groq.com
+      <li>Dans <b>Name</b>, écris <code>AdCloner</code>.</li>
+    </ol>
+    <p class="doux">Garde la fenêtre ouverte : on la remplit dans les 3 écrans suivants.</p>
+  </section>
+
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Ton atelier · 2/4</span>
+    <h2>Les sites autorisés</h2>
+    <p>Dans <b>Network access</b>, choisis <b>Custom</b>. Dans <b>Allowed domains</b>, colle :</p>
+    <div class="bloc"><pre id="domaines">api.groq.com
 api.elevenlabs.io
 api.replicate.com
 replicate.delivery
@@ -174,9 +199,14 @@ replicate.delivery
 *.aliyuncs.com
 *.fbcdn.net
 medias.trendtrack.io</pre><button class="copier" data-cible="domaines">Copier</button></div>
-        Puis <b>coche</b> la case <b>Also include default list of common package managers</b>.</li>
-      <li><b>Environment variables</b> : colle ce bloc, puis <b>remplace les deux lignes Vmake</b> par tes clés Vmake (Access Key après <code>MT_AK=</code>, Secret Key après <code>MT_SK=</code>, sans espace) :
-        <div class="bloc"><pre id="variables">GROQ_API_KEY=cloud
+    <p>Puis <b>coche</b> la case <b>Also include default list of common package managers</b>.</p>
+  </section>
+
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Ton atelier · 3/4</span>
+    <h2>Les réglages</h2>
+    <p>Dans <b>Environment variables</b>, colle ce bloc :</p>
+    <div class="bloc"><pre id="variables">GROQ_API_KEY=cloud
 ELEVENLABS_API_KEY=cloud
 REPLICATE_API_TOKEN=cloud
 MT_AK=COLLE_ICI_TON_ACCESS_KEY_VMAKE
@@ -185,112 +215,147 @@ ADCLONER_WHISPER=groq
 ADCLONER_DEMUCS=replicate
 BASH_DEFAULT_TIMEOUT_MS=600000
 BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">Copier</button></div>
-        <div class="astuce">Les trois <code>=cloud</code> sont normaux : tes vraies clés Groq, ElevenLabs et Replicate vont dans un coffre à l'étape suivante.</div></li>
-      <li><b>Setup script</b> : colle :
-        <div class="bloc"><pre id="script">#!/bin/bash
-for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div></li>
-      <li>Clique sur <b>Create environment</b>.</li>
-    </ol>
-    <label class="fait"><input type="checkbox"> Mon environnement AdCloner est créé</label>
+    <div class="attention">Remplace les deux textes en majuscules par tes <b>clés Vmake</b> (Access Key, puis Secret Key), sans espace après le <code>=</code>.</div>
+    <p class="doux">Les <code>=cloud</code> sont normaux : tes autres clés vont dans un coffre juste après.</p>
   </section>
 
-  <!-- 7 -->
-  <section class="carte etape" data-etape="7">
-    <header><div class="num">7</div><div><h2>Range tes 3 clés dans le coffre</h2><div class="duree">3 min</div></div></header>
-    <p>Les « secrets réseau » gardent tes clés hors de portée : Claude peut s'en servir, mais ne peut pas les lire.</p>
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Ton atelier · 4/4</span>
+    <h2>Le démarrage</h2>
+    <p>Dans <b>Setup script</b>, colle :</p>
+    <div class="bloc"><pre id="script">#!/bin/bash
+for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div>
+    <p>Puis clique sur <b>Create environment</b>. 🎉</p>
+  </section>
+
+  <!-- Coffre -->
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Le coffre · 1/3</span>
+    <h2>Range ta clé Groq</h2>
+    <p>Le coffre (« secrets ») garde tes clés à l'abri : Claude peut s'en servir, mais pas les lire.</p>
     <ol>
-      <li>Rouvre le sélecteur (icône nuage) → <b>Cloud</b>, survole <b>AdCloner</b> et clique sur la <b>roue dentée</b>.</li>
-      <li>Dans <b>Network secrets</b>, clique sur <b>Add secret</b>. Laisse <b>Secret type</b> sur <b>Bearer</b>.</li>
-      <li>Remplis le formulaire avec la première ligne du tableau, clique sur <b>Add</b>. Recommence pour les deux autres lignes.</li>
+      <li>Rouvre l'icône nuage → <b>Cloud</b>, survole <b>AdCloner</b>, clique sur la <b>roue dentée</b>.</li>
+      <li>Dans <b>Network secrets</b>, clique sur <b>Add secret</b> et remplis :</li>
     </ol>
-    <table>
-      <tr><th>Name</th><th>Allowed websites</th><th>Header Name</th><th>Prefix</th><th>Value</th></tr>
-      <tr><td>Groq</td><td><code>api.groq.com</code></td><td><code>Authorization</code></td><td><code>Bearer</code></td><td>ta clé Groq</td></tr>
-      <tr><td>ElevenLabs</td><td><code>api.elevenlabs.io</code></td><td><code>xi-api-key</code></td><td><b>vide</b> (efface Bearer)</td><td>ta clé ElevenLabs</td></tr>
-      <tr><td>Replicate</td><td><code>api.replicate.com</code></td><td><code>Authorization</code></td><td><code>Bearer</code></td><td>ta clé Replicate</td></tr>
-    </table>
-    <div class="attention"><b>ElevenLabs est différent :</b> remplace <code>Authorization</code> par <code>xi-api-key</code> et <b>efface</b> le mot Bearer du préfixe.</div>
-    <p>Une fois les 3 secrets ajoutés, supprime ta note : tes clés sont à l'abri.</p>
-    <label class="fait"><input type="checkbox"> Mes 3 secrets sont ajoutés et ma note est supprimée</label>
+    <div class="champs">
+      <div class="champ"><span>Name</span><b>Groq</b></div>
+      <div class="champ"><span>Allowed websites</span><code>api.groq.com</code></div>
+      <div class="champ"><span>Header Name</span><code>Authorization</code></div>
+      <div class="champ"><span>Prefix</span><code>Bearer</code></div>
+      <div class="champ"><span>Value</span><b>ta clé Groq</b></div>
+    </div>
+    <p>Clique sur <b>Add</b>.</p>
   </section>
 
-  <!-- 8 -->
-  <section class="carte etape" data-etape="8">
-    <header><div class="num">8</div><div><h2>Le test final</h2><div class="duree">2 min</div></div></header>
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Le coffre · 2/3</span>
+    <h2>Range ta clé ElevenLabs</h2>
+    <p><b>Add secret</b> à nouveau :</p>
+    <div class="champs">
+      <div class="champ"><span>Name</span><b>ElevenLabs</b></div>
+      <div class="champ"><span>Allowed websites</span><code>api.elevenlabs.io</code></div>
+      <div class="champ"><span>Header Name</span><code>xi-api-key</code></div>
+      <div class="champ"><span>Prefix</span><b>vide</b></div>
+      <div class="champ"><span>Value</span><b>ta clé ElevenLabs</b></div>
+    </div>
+    <div class="attention">Ici c'est différent : remplace <code>Authorization</code> par <code>xi-api-key</code>, et <b>efface</b> le mot Bearer.</div>
+  </section>
+
+  <section class="ecran" data-bouton="C'est fait">
+    <span class="partie">Le coffre · 3/3</span>
+    <h2>Range ta clé Replicate</h2>
+    <p><b>Add secret</b> une dernière fois :</p>
+    <div class="champs">
+      <div class="champ"><span>Name</span><b>Replicate</b></div>
+      <div class="champ"><span>Allowed websites</span><code>api.replicate.com</code></div>
+      <div class="champ"><span>Header Name</span><code>Authorization</code></div>
+      <div class="champ"><span>Prefix</span><code>Bearer</code></div>
+      <div class="champ"><span>Value</span><b>ta clé Replicate</b></div>
+    </div>
+    <p>Tes clés sont à l'abri : <b>supprime ta note</b>.</p>
+  </section>
+
+  <!-- Test -->
+  <section class="ecran" data-bouton="Claude me dit que tout est ok">
+    <span class="partie">Dernière étape</span>
+    <h2>Le test</h2>
     <ol>
       <li>Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, choisis le dépôt <b>adcloner-eleves</b> et l'environnement <b>AdCloner</b> (icône nuage).</li>
-      <li>Écris :
-        <div class="bloc"><pre id="test">Vérifie mon installation AdCloner.</pre><button class="copier" data-cible="test">Copier</button></div></li>
-      <li>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire.</li>
+      <li>Écris :</li>
     </ol>
-    <label class="fait"><input type="checkbox"> Claude me dit que tout est ok</label>
+    <div class="bloc"><pre id="test">Vérifie mon installation AdCloner.</pre><button class="copier" data-cible="test">Copier</button></div>
+    <p>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire : utilise « Retour » pour y revenir.</p>
   </section>
 
-  <section class="carte">
-    <h2 id="bravo">Traduire une pub au quotidien</h2>
+  <!-- Fin -->
+  <section class="ecran" data-fin>
+    <span class="partie">Terminé 🎉</span>
+    <h1>Bravo <span class="nom-seul"></span>, AdCloner est prêt</h1>
+    <p><b>Pour traduire une pub :</b></p>
     <ol>
-      <li><b>Dépose ta vidéo</b> dans ton dépôt : ouvre <span id="lien-sources">le dossier <code>sources</code> de ton dépôt</span> → <b>Add file</b> → <b>Upload files</b> → <b>Commit changes</b> (25 Mo maximum).</li>
-      <li>Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a> (dépôt <b>adcloner-eleves</b>, environnement <b>AdCloner</b>), écris par exemple :
-        <div class="bloc"><pre id="exemple">Traduis la vidéo sources/ma-pub.mp4 en français. Ma marque : …, mon produit : …, mon site : …</pre><button class="copier" data-cible="exemple">Copier</button></div></li>
-      <li>Claude t'annonce le coût (crédits Vmake, caractères ElevenLabs) et attend ton <b>ok</b>.</li>
-      <li>Environ 15 minutes plus tard, il te donne un <b>lien</b> : clique dessus, puis sur le bouton de téléchargement (flèche vers le bas). Tu peux fermer l'ordinateur pendant ce temps : ça continue de tourner.</li>
+      <li>Dépose la vidéo dans le dossier <code>sources</code> de ton dépôt GitHub : <b>Add file</b> → <b>Upload files</b> → <b>Commit changes</b> (25 Mo max).</li>
+      <li>Sur claude.ai/code (dépôt <b>adcloner-eleves</b>, environnement <b>AdCloner</b>), écris par exemple :</li>
     </ol>
-    <div class="astuce"><b>Mettre à jour AdCloner :</b> quand ton formateur annonce une nouvelle version, va sur la page de ton dépôt GitHub et clique sur <b>Sync fork</b> → <b>Update branch</b>.</div>
-    <div class="astuce"><b>Bon à savoir :</b> tes vidéos finies sont rangées dans la branche <code>livraisons</code> de ton dépôt. Ton formateur peut les voir, pour t'aider à progresser et améliorer AdCloner. Télécharge-les au fur et à mesure : si ton accès à AdCloner se termine, ta copie est supprimée.</div>
+    <div class="bloc"><pre id="exemple">Traduis la vidéo sources/ma-pub.mp4 en français. Ma marque : …, mon produit : …, mon site : …</pre><button class="copier" data-cible="exemple">Copier</button></div>
+    <ol start="3">
+      <li>Claude t'annonce le coût et attend ton <b>ok</b>.</li>
+      <li>Environ 15 minutes plus tard, il te donne un <b>lien</b> pour télécharger ta vidéo. Tu peux fermer l'ordinateur en attendant.</li>
+    </ol>
+    <div class="astuce"><b>Mise à jour :</b> quand ton formateur annonce une nouvelle version, va sur ton dépôt GitHub et clique sur <b>Sync fork</b> → <b>Update branch</b>.</div>
+    <div class="astuce"><b>Bon à savoir :</b> ton formateur peut voir tes vidéos, pour t'aider à progresser et améliorer AdCloner. Télécharge-les au fur et à mesure : si ton accès se termine, ta copie est supprimée.</div>
+    <h2 style="font-size:22px;margin-top:26px">Un souci ?</h2>
+    <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Revois l'écran « Les réglages » de ton atelier, puis démarre une <b>nouvelle</b> session.</p></details>
+    <details><summary>Erreur 401 ou « invalid api key »</summary><p>La clé de ce service est fausse. Supprime son secret dans le coffre et ajoute-le à nouveau. ElevenLabs : la clé commence par <code>sk_</code>.</p></details>
+    <details><summary>Erreur 402, « insufficient credit » ou quota</summary><p>Le compte de ce service n'a plus de crédit : recharge-le.</p></details>
+    <details><summary>Claude ne voit pas mon dépôt</summary><p>Refais l'écran « Connecte Claude à GitHub ».</p></details>
+    <details><summary>Ma vidéo fait plus de 25 Mo</summary><p>Réduis-la avant (par exemple avec HandBrake, gratuit), ou demande à ton formateur.</p></details>
   </section>
 
-  <section class="carte">
-    <h2>Problèmes fréquents</h2>
-    <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Rouvre ton environnement (roue dentée) et vérifie le bloc <b>Environment variables</b> de l'étape 6. Puis démarre une <b>nouvelle</b> session : une session déjà ouverte garde les anciennes valeurs.</p></details>
-    <details><summary>Erreur 401 ou « invalid api key »</summary><p>La clé du service cité est fausse ou mal collée. Supprime le secret (étape 7) et ajoute-le à nouveau avec la bonne clé. Pour ElevenLabs, vérifie qu'elle commence par <code>sk_</code>.</p></details>
-    <details><summary>Erreur 402, « insufficient credit » ou quota</summary><p>Le compte du service n'a plus de crédit. Recharge-le (Replicate : Billing ; ElevenLabs et Vmake : ton abonnement).</p></details>
-    <details><summary>Claude ne voit pas mon dépôt adcloner-eleves</summary><p>Refais l'étape 5 : l'application Claude doit être installée sur <code>adcloner-eleves</code> dans GitHub.</p></details>
-    <details><summary>Ma vidéo fait plus de 25 Mo</summary><p>Réduis-la avant de la déposer (par exemple avec HandBrake, gratuit), ou demande à ton formateur.</p></details>
-  </section>
-
-  <footer>AdCloner · guide d'installation</footer>
+  <div class="actions" id="actions">
+    <button class="suivant" id="suivant">Continuer</button>
+    <button class="retour" id="retour">Retour</button>
+  </div>
+  <div class="bas"><button class="retour" id="recommencer" style="font-size:13px">Recommencer depuis le début</button></div>
 </main>
 <script>
 (function(){
   var lire=function(k){try{return localStorage.getItem('adcloner-'+k)||''}catch(e){return ''}};
   var ecrire=function(k,v){try{localStorage.setItem('adcloner-'+k,v)}catch(e){}};
-  var prenom=document.getElementById('prenom'), pseudo=document.getElementById('pseudo');
-  prenom.value=lire('prenom'); pseudo.value=lire('pseudo');
-  function perso(){
-    var p=prenom.value.trim(), g=pseudo.value.trim().replace(/^@/,'').replace(/[^A-Za-z0-9-]/g,'');
-    document.getElementById('titre').textContent=p?p+', installe AdCloner en 20 minutes':'Installe AdCloner en 20 minutes';
-    document.getElementById('bravo').textContent=p?'Traduire une pub au quotidien, '+p:'Traduire une pub au quotidien';
-    var depot=document.getElementById('lien-depot'), sources=document.getElementById('lien-sources');
-    if(g){
-      var url='https://github.com/'+g+'/adcloner-eleves';
-      depot.innerHTML='ton dépôt <a target="_blank" rel="noopener" href="'+url+'"><code>'+g+'/adcloner-eleves</code></a>';
-      sources.innerHTML='<a target="_blank" rel="noopener" href="'+url+'/tree/main/sources">le dossier <code>sources</code> de ton dépôt</a>';
-    }else{
-      depot.innerHTML='ton dépôt <code>ton-pseudo/adcloner-eleves</code>';
-      sources.innerHTML='le dossier <code>sources</code> de ton dépôt';
-    }
-  }
-  prenom.addEventListener('input',function(){ecrire('prenom',prenom.value);perso()});
-  pseudo.addEventListener('input',function(){ecrire('pseudo',pseudo.value);perso()});
-  perso();
+  var ecrans=[].slice.call(document.querySelectorAll('.ecran'));
+  var suivant=document.getElementById('suivant'), retour=document.getElementById('retour'), prenom=document.getElementById('prenom');
+  var i=Math.min(parseInt(lire('ecran'),10)||0, ecrans.length-1);
+  prenom.value=lire('prenom');
 
-  var etapes=[].slice.call(document.querySelectorAll('.etape'));
-  function jauge(){
-    var n=etapes.filter(function(e){return e.querySelector('.fait input').checked}).length;
-    document.getElementById('jauge').style.width=(100*n/etapes.length)+'%';
-    document.getElementById('jauge-texte').textContent=n===etapes.length?'Installation terminée 🎉':n+' étape'+(n>1?'s':'')+' sur '+etapes.length;
+  function noms(){
+    var p=prenom.value.trim();
+    document.querySelectorAll('.nom').forEach(function(e){e.textContent=p?p+', ':''});
+    document.querySelectorAll('.nom-seul').forEach(function(e){e.textContent=p});
+    if(i===0)suivant.disabled=!p;
   }
-  etapes.forEach(function(e){
-    var c=e.querySelector('.fait input'), k='etape'+e.dataset.etape;
-    c.checked=lire(k)==='1'; e.classList.toggle('faite',c.checked);
-    c.addEventListener('change',function(){ecrire(k,c.checked?'1':'');e.classList.toggle('faite',c.checked);jauge()});
-  });
-  jauge();
+  function montre(n,haut){
+    i=n; ecrire('ecran',String(i));
+    ecrans.forEach(function(e,k){e.classList.toggle('actif',k===i)});
+    var e=ecrans[i];
+    document.getElementById('jauge').style.width=(100*i/(ecrans.length-1))+'%';
+    document.getElementById('actions').style.display=e.hasAttribute('data-fin')?'none':'flex';
+    suivant.textContent=e.dataset.bouton||'Continuer';
+    retour.style.visibility=i===0?'hidden':'visible';
+    document.getElementById('recommencer').style.visibility=i===0?'hidden':'visible';
+    suivant.disabled=false; noms();
+    if(haut!==false)window.scrollTo({top:0,behavior:'smooth'});
+    if(i===0)setTimeout(function(){prenom.focus()},50);
+  }
+  prenom.addEventListener('input',function(){ecrire('prenom',prenom.value);noms()});
+  prenom.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&prenom.value.trim())montre(1)});
+  suivant.addEventListener('click',function(){if(i<ecrans.length-1)montre(i+1)});
+  retour.addEventListener('click',function(){if(i>0)montre(i-1)});
+  document.getElementById('recommencer').addEventListener('click',function(){montre(0)});
+  montre(i,false);
 
   document.querySelectorAll('.copier').forEach(function(b){
     b.addEventListener('click',function(){
       var t=document.getElementById(b.dataset.cible).textContent;
-      var fini=function(){b.textContent='Copié ✓';b.classList.add('ok');setTimeout(function(){b.textContent='Copier';b.classList.remove('ok')},1600)};
+      var fini=function(){b.textContent='Copié ✓';setTimeout(function(){b.textContent='Copier'},1600)};
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(fini,function(){secours(t);fini()})}else{secours(t);fini()}
     });
   });

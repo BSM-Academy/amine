@@ -25,9 +25,9 @@
 html,body{height:100%}
 body{margin:0;background:var(--fond);color:var(--texte);font:17px/1.6 "DM Sans",system-ui,sans-serif}
 .page{max-width:640px;margin:0 auto;padding:20px 16px 40px;min-height:100%;display:flex;flex-direction:column}
-.haut{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.haut{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:28px}
 .logo{font:700 15px "Space Grotesk";letter-spacing:.02em;white-space:nowrap}
-.jauge{flex:1;height:8px;background:var(--sauge-fond);border-radius:99px;overflow:hidden}
+.jauge{grid-column:1/-1;height:6px;background:var(--sauge-fond);border-radius:99px;overflow:hidden}
 .jauge i{display:block;height:100%;width:0;background:var(--sauge);transition:width .4s ease}
 .ecran{display:none;animation:entre .35s ease}
 .ecran.actif{display:block}
@@ -70,9 +70,10 @@ details{border-top:1px solid var(--trait);padding:12px 0}
 summary{cursor:pointer;font-weight:700}
 .capture{display:block;width:100%;border-radius:12px;border:1px solid var(--trait);margin:10px 0 14px}
 .capture.etroite{max-width:420px}
-.marque{display:flex;align-items:center;gap:10px;margin:0 0 16px;text-decoration:none;color:var(--texte)}
-.marque img{width:34px;height:34px}
-.marque span{font:400 19px "Jost",sans-serif;letter-spacing:.06em}
+.marque{justify-self:start;display:flex;align-items:center;gap:8px;color:var(--texte)}
+.marque img{width:30px;height:30px}
+.marque span{font:400 16px "Jost",sans-serif;letter-spacing:.06em}
+@media (max-width:560px){.marque span{display:none}}
 .signature{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:var(--gris);margin-bottom:8px}
 .signature img{width:16px;height:16px}
 .logo{display:flex;align-items:center;gap:8px}
@@ -94,8 +95,7 @@ summary{cursor:pointer;font-weight:700}
 </head>
 <body>
 <main class="page">
-  <div class="marque" aria-label="BSM Academy"><img src="img/bsm.png" alt=""><span>ACADEMY</span></div>
-  <div class="haut"><span class="logo"><img src="img/amine.jpg" alt="">Amine · ton monteur vidéo IA</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
+  <div class="haut"><div class="marque" aria-label="BSM Academy"><img src="img/bsm.png" alt=""><span>ACADEMY</span></div><span class="logo"><img src="img/amine.jpg" alt="">Amine · ton monteur vidéo IA</span><span></span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
 
   <!-- Accueil -->
   <section class="ecran" data-bouton="C'est parti">

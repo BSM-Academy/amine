@@ -376,7 +376,7 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     if(i===0)suivant.disabled=!p;
     // pseudo GitHub : prépare les boutons « Lancer Amine » (deux dépôts + environnement préchoisis) et « Dépose ta vidéo »
     var g=pseudo.value.trim().replace(/^@/,'').replace(/[^A-Za-z0-9-]/g,'');
-    var depots='contactsyriusmedia-create/amine-monteur-video-ia'+(g?','+g+'/mes-videos-amine-ia':'');
+    var depots='BSM-Academy/amine-monteur-video-ia'+(g?','+g+'/mes-videos-amine-ia':'');
     document.querySelectorAll('.lancer').forEach(function(a){
       a.href='https://claude.ai/code?repositories='+encodeURIComponent(depots)+'&environment=Amine&prompt='+encodeURIComponent(a.dataset.prompt||'');
     });

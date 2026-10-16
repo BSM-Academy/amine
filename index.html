@@ -135,17 +135,17 @@ summary{cursor:pointer;font-weight:700}
       <li>Clique sur l'interrupteur <b>Add README</b> pour le passer sur <b>On</b>.</li>
       <li>Clique sur le bouton vert <b>Create repository</b>.</li>
     </ol>
-    <a class="lien" href="https://github.com/new?name=mes-videos-adcloner&amp;visibility=public&amp;description=Mes%20vid%C3%A9os%20Amine" target="_blank" rel="noopener">Créer mon dossier</a>
+    <a class="lien" href="https://github.com/new?name=mes-videos-amine-ia&amp;visibility=public&amp;description=Mes%20vid%C3%A9os%20Amine" target="_blank" rel="noopener">Créer mon dossier</a>
   </section>
 
   <section class="ecran" data-bouton="C'est fait" data-requis="pseudo">
     <span class="partie">GitHub</span>
     <h2>Ton pseudo GitHub</h2>
-    <p>Sur la page de ton dossier, ton pseudo est écrit <b>en haut à gauche</b>, juste avant <code>mes-videos-adcloner</code> :</p>
+    <p>Sur la page de ton dossier, ton pseudo est écrit <b>en haut à gauche</b>, juste avant <code>mes-videos-amine-ia</code> :</p>
     <img class="capture" src="img/pseudo.jpg" alt="Haut de la page GitHub du dossier, avec le pseudo entouré">
     <p>Recopie-le ici :</p>
     <input type="text" id="pseudo" autocomplete="off" placeholder="ton-pseudo">
-    <p class="doux" style="font-size:14px">Il sert à préparer ton bouton « Lancer Amine » à la fin.</p>
+    <p class="doux" style="font-size:14px"><b>Pourquoi ?</b> Pour que ton bouton « Lancer Amine » ouvre directement ton dossier de vidéos. Comme ça, Amine sait où te livrer, et tu n'as rien à choisir à chaque fois.</p>
   </section>
 
   <!-- Clés -->
@@ -311,7 +311,7 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Vérifie mon installation.">Lancer le test</a>
     <img class="capture" src="img/lancer.jpg" alt="Zone de message avec l'environnement Amine, les deux dépôts et le bouton Envoyer entourés">
     <ol>
-      <li>Vérifie en bas : <b>Amine</b> et <b>adcloner… +1</b> (tes deux dossiers).</li>
+      <li>Vérifie en bas : <b>Amine</b>, et ton dossier <b>amine-monteur-video-ia</b> avec <b>+1</b> (tes deux dossiers).</li>
       <li>Le message est déjà écrit : clique sur la <b>flèche d'envoi</b>.</li>
     </ol>
     <p>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire : utilise « Retour » pour y revenir.</p>
@@ -365,11 +365,11 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     if(i===0)suivant.disabled=!p;
     // pseudo GitHub : prépare les boutons « Lancer Amine » (deux dépôts + environnement préchoisis) et « Dépose ta vidéo »
     var g=pseudo.value.trim().replace(/^@/,'').replace(/[^A-Za-z0-9-]/g,'');
-    var depots='contactsyriusmedia-create/adcloner-eleves'+(g?','+g+'/mes-videos-adcloner':'');
+    var depots='contactsyriusmedia-create/amine-monteur-video-ia'+(g?','+g+'/mes-videos-amine-ia':'');
     document.querySelectorAll('.lancer').forEach(function(a){
       a.href='https://claude.ai/code?repositories='+encodeURIComponent(depots)+'&environment=Amine&prompt='+encodeURIComponent(a.dataset.prompt||'');
     });
-    document.querySelectorAll('.depot-sources').forEach(function(a){a.href=g?'https://github.com/'+g+'/mes-videos-adcloner/upload/main/sources':'https://github.com'});
+    document.querySelectorAll('.depot-sources').forEach(function(a){a.href=g?'https://github.com/'+g+'/mes-videos-amine-ia/upload/main/sources':'https://github.com'});
     if(ecrans[i]&&ecrans[i].dataset.requis==='pseudo')suivant.disabled=!g;
   }
   function montre(n,haut){

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Installer AdCloner</title>
-<meta name="description" content="Le tuto pas à pas pour installer AdCloner dans Claude, sans rien installer sur ton ordinateur.">
+<title>Installer Amine</title>
+<meta name="description" content="Le tuto pas à pas pour installer Amine, ton monteur vidéo IA, dans Claude, sans rien installer sur ton ordinateur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -70,18 +70,33 @@ details{border-top:1px solid var(--trait);padding:12px 0}
 summary{cursor:pointer;font-weight:700}
 .capture{display:block;width:100%;border-radius:12px;border:1px solid var(--trait);margin:10px 0 14px}
 .capture.etroite{max-width:420px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid var(--sauge)}
+.presente{display:flex;align-items:flex-end;gap:12px;margin:4px 0 18px}
+.presente img{width:96px;height:96px;flex:none;border-radius:24px;object-fit:cover;border:3px solid var(--sauge);box-shadow:0 8px 24px rgba(14,16,14,.18)}
+.hote{display:grid;grid-template-columns:1fr 44%;align-items:end;gap:6px;margin:0 0 6px}
+.hote.salut{grid-template-columns:1fr 36%}
+.hote-corps{position:relative;display:flex;justify-content:center;animation:arrive .6s ease both}
+.hote-corps::before{content:"";position:absolute;left:8%;right:8%;bottom:-6px;height:22px;border-radius:50%;background:var(--sauge);opacity:.45;filter:blur(6px)}
+.hote-corps img{position:relative;width:100%;height:auto;max-height:440px;object-fit:contain;object-position:bottom}
+.hote .bulle{align-self:center;border-radius:18px 18px 4px 18px;animation:entre .5s .35s ease both}
+@keyframes arrive{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.hote-corps,.hote .bulle{animation:none}}
+.bulle{position:relative;background:var(--carte);border:1px solid var(--trait);border-radius:18px 18px 18px 4px;padding:12px 16px;font-size:16px;line-height:1.5}
+.bulle b{font-family:"Space Grotesk"}
 .bas{margin-top:auto;padding-top:30px;font-size:13px;color:var(--gris);text-align:center}
 </style>
 </head>
 <body>
 <main class="page">
-  <div class="haut"><span class="logo">AdCloner</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
+  <div class="haut"><span class="logo"><img src="img/amine.jpg" alt="">Amine · ton monteur vidéo</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
 
   <!-- Accueil -->
   <section class="ecran" data-bouton="C'est parti">
     <span class="partie">Installation</span>
-    <h1>On installe AdCloner ensemble</h1>
-    <p>Une petite étape à la fois, environ 20 minutes en tout. Rien ne s'installe sur ton ordinateur : tout tourne dans le cloud de Claude.</p>
+    <div class="hote"><div class="bulle">Moi c'est <b>Amine</b>, ton monteur vidéo 🎬<br><br>Je traduis tes pubs dans la langue que tu veux, avec une vraie voix.</div><div class="hote-corps"><img src="img/amine-accueil.webp" alt="Amine, le monteur vidéo de l'équipe, t'accueille"></div></div>
+    <h1>On m'installe ensemble&nbsp;?</h1>
+    <p>Une petite étape à la fois, environ 20 minutes en tout. Rien ne s'installe sur ton ordinateur : je travaille dans le cloud de Claude.</p>
     <p><b>Comment tu t'appelles ?</b></p>
     <input type="text" id="prenom" autocomplete="given-name" placeholder="Ton prénom">
     <p class="doux" style="font-size:14px;margin-top:8px">Ton avancement est gardé sur ce navigateur : tu peux fermer la page et revenir plus tard.</p>
@@ -89,15 +104,15 @@ summary{cursor:pointer;font-weight:700}
 
   <section class="ecran" data-bouton="J'ai Claude Pro, on continue">
     <span class="partie">Avant de commencer</span>
-    <h2><span class="nom"></span>tu auras besoin de 5 services</h2>
-    <p>Un compte à toi sur chacun. Tu paies seulement ce que tu utilises.</p>
+    <h2><span class="nom"></span>voici mes outils</h2>
+    <p>Il te faut un compte à toi sur chacun. Tu paies seulement ce que tu utilises.</p>
     <div class="services">
-      <div class="service"><b>Claude Pro</b><span>le cerveau (Pro ou Max)</span></div>
-      <div class="service"><b>ElevenLabs</b><span>la voix (Starter minimum)</span></div>
-      <div class="service"><b>Vmake</b><span>efface le texte (Plus minimum)</span></div>
+      <div class="service"><b>Claude Pro</b><span>mon cerveau (Pro ou Max)</span></div>
+      <div class="service"><b>ElevenLabs</b><span>ma voix (Starter minimum)</span></div>
+      <div class="service"><b>Vmake</b><span>ma gomme : efface le texte (Plus minimum)</span></div>
       <div class="service"><b>Replicate</b><span>sépare la voix de la musique (centimes)</span></div>
-      <div class="service"><b>Groq</b><span>la transcription, gratuit</span></div>
-      <div class="service"><b>GitHub</b><span>où arrivent tes vidéos, gratuit</span></div>
+      <div class="service"><b>Groq</b><span>mes oreilles : la transcription, gratuit</span></div>
+      <div class="service"><b>GitHub</b><span>ta boîte aux lettres, gratuit</span></div>
     </div>
     <p>Fais l'installation sur un <b>ordinateur</b>. Après, tu pourras aussi lancer des vidéos depuis ton téléphone.</p>
   </section>
@@ -115,7 +130,7 @@ summary{cursor:pointer;font-weight:700}
     <span class="partie">GitHub</span>
     <h2>Crée ton dossier de vidéos</h2>
     <p>Un dossier à toi, où arriveront tes vidéos finies. Clique sur le bouton : tout est déjà rempli.</p>
-    <a class="lien" href="https://github.com/new?name=mes-videos-adcloner&amp;visibility=public&amp;description=Mes%20vid%C3%A9os%20AdCloner" target="_blank" rel="noopener">Créer mon dossier</a>
+    <a class="lien" href="https://github.com/new?name=mes-videos-adcloner&amp;visibility=public&amp;description=Mes%20vid%C3%A9os%20Amine" target="_blank" rel="noopener">Créer mon dossier</a>
     <img class="capture" src="img/dossier.jpg" alt="Page GitHub de création du dossier : interrupteur Add README et bouton Create repository entourés">
     <ol>
       <li>Clique sur l'interrupteur <b>Add README</b> pour le passer sur <b>On</b>.</li>
@@ -130,20 +145,20 @@ summary{cursor:pointer;font-weight:700}
     <img class="capture" src="img/pseudo.jpg" alt="Haut de la page GitHub du dossier, avec le pseudo entouré">
     <p>Recopie-le ici :</p>
     <input type="text" id="pseudo" autocomplete="off" placeholder="ton-pseudo">
-    <p class="doux" style="font-size:14px">Il sert à préparer ton bouton « Lancer AdCloner » à la fin.</p>
+    <p class="doux" style="font-size:14px">Il sert à préparer ton bouton « Lancer Amine » à la fin.</p>
   </section>
 
   <!-- Clés -->
   <section class="ecran" data-bouton="J'ai ma clé Groq">
     <span class="partie">Tes clés · 1/4</span>
     <h2>Ta clé Groq</h2>
-    <p>Une clé, c'est un long code qui permet à AdCloner d'utiliser ton compte.</p>
+    <p>Une clé, c'est un long code qui permet à Amine d'utiliser ton compte.</p>
     <div class="astuce">Ouvre une <b>note vide</b> sur ton ordinateur : tu y colleras tes clés le temps de l'installation, puis tu la supprimeras.</div>
     <a class="lien" href="https://console.groq.com/keys" target="_blank" rel="noopener">Ouvrir Groq</a>
     <img class="capture" src="img/groq.jpg" alt="Page des clés Groq avec le bouton Create API Key entouré">
     <ol>
       <li>Crée ton compte (gratuit) si on te le demande.</li>
-      <li>Clique sur <b>Create API Key</b>, écris <code>AdCloner</code> comme nom, puis valide.</li>
+      <li>Clique sur <b>Create API Key</b>, écris <code>Amine</code> comme nom, puis valide.</li>
       <li>Copie la clé affichée (elle commence par <code>gsk_</code>) et colle-la dans ta note.</li>
     </ol>
   </section>
@@ -157,7 +172,7 @@ summary{cursor:pointer;font-weight:700}
     <p>Clique sur <b>Create Key</b>. Une fenêtre s'ouvre à droite :</p>
     <img class="capture etroite" src="img/elevenlabs-cle.jpg" alt="Fenêtre de création de clé ElevenLabs : nom, interrupteur Restrict Key et bouton Create Key entourés">
     <ol>
-      <li>Dans <b>Name</b>, écris <code>AdCloner</code>.</li>
+      <li>Dans <b>Name</b>, écris <code>Amine</code>.</li>
       <li>Clique sur l'interrupteur <b>Restrict Key</b> pour l'<b>éteindre</b>.</li>
       <li>Clique sur <b>Create Key</b>, puis copie la clé (elle commence par <code>sk_</code>) dans ta note.</li>
     </ol>
@@ -167,11 +182,11 @@ summary{cursor:pointer;font-weight:700}
   <section class="ecran" data-bouton="J'ai ma clé Replicate">
     <span class="partie">Tes clés · 3/4</span>
     <h2>Ta clé Replicate</h2>
-    <p>Replicate sépare la voix d'origine de la musique : AdCloner garde la musique de la pub et pose la nouvelle voix par-dessus.</p>
+    <p>Replicate sépare la voix d'origine de la musique : Amine garde la musique de la pub et pose la nouvelle voix par-dessus.</p>
     <a class="lien" href="https://replicate.com/account/api-tokens" target="_blank" rel="noopener">Ouvrir Replicate</a>
     <img class="capture" src="img/replicate.jpg" alt="Page des jetons Replicate : champ du nom, bouton Create token et menu Billing entourés">
     <ol>
-      <li>Écris <code>AdCloner</code> dans la case, puis clique sur <b>Create token</b>.</li>
+      <li>Écris <code>Amine</code> dans la case, puis clique sur <b>Create token</b>.</li>
       <li>Copie le jeton (il commence par <code>r8_</code>) dans ta note.</li>
       <li>Clique sur <b>Billing</b> et ajoute ta carte : sans crédit, la clé ne marche pas (quelques centimes par vidéo).</li>
     </ol>
@@ -204,7 +219,7 @@ summary{cursor:pointer;font-weight:700}
   <section class="ecran" data-bouton="La fenêtre est ouverte">
     <span class="partie">Ton atelier · 1/3</span>
     <h2>Crée ton environnement</h2>
-    <p>L'environnement, c'est l'atelier où Claude travaille. Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, tout en bas sous la zone de message :</p>
+    <p>L'environnement, c'est l'atelier où Amine travaille. Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, tout en bas sous la zone de message :</p>
     <img class="capture etroite" src="img/env-nouveau.jpg" alt="Bouton Cloud et menu Nouvel environnement entourés">
     <ol>
       <li>Clique sur le bouton avec le <b>petit nuage</b>.</li>
@@ -217,7 +232,7 @@ summary{cursor:pointer;font-weight:700}
     <h2>Le nom et l'accès Internet</h2>
     <img class="capture etroite" src="img/env-nom-reseau.jpg" alt="Formulaire Nouvel environnement : champ Nom et option Complet entourés">
     <ol>
-      <li>Dans <b>Nom</b>, écris <code>AdCloner</code>.</li>
+      <li>Dans <b>Nom</b>, écris <code>Amine</code>.</li>
       <li>Clique sur <b>Accès réseau</b> et choisis <b>Complet</b>.</li>
     </ol>
   </section>
@@ -249,7 +264,7 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     <span class="partie">Le coffre · 1/3</span>
     <h2>Range ta clé Groq</h2>
     <p>Le coffre (« Secrets réseau ») garde tes clés à l'abri : Claude peut s'en servir, mais jamais les lire.</p>
-    <p>Rouvre ton environnement (bouton nuage → <b>Cloud</b> → passe la souris sur <b>AdCloner</b> → roue dentée), puis clique sur <b>Ajouter un secret</b> :</p>
+    <p>Rouvre ton environnement (bouton nuage → <b>Cloud</b> → passe la souris sur <b>Amine</b> → roue dentée), puis clique sur <b>Ajouter un secret</b> :</p>
     <img class="capture etroite" src="img/env-ajouter-secret.jpg" alt="Bouton Ajouter un secret entouré">
     <img class="capture etroite" src="img/secret-groq.jpg" alt="Formulaire Ajouter un secret rempli pour Groq">
     <ol>
@@ -293,10 +308,10 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     <span class="partie">Dernière étape</span>
     <h2>Le test</h2>
     <p>Ce bouton ouvre Claude avec tout déjà choisi :</p>
-    <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Vérifie mon installation AdCloner.">Lancer le test</a>
-    <img class="capture" src="img/lancer.jpg" alt="Zone de message avec l'environnement AdCloner, les deux dépôts et le bouton Envoyer entourés">
+    <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Vérifie mon installation.">Lancer le test</a>
+    <img class="capture" src="img/lancer.jpg" alt="Zone de message avec l'environnement Amine, les deux dépôts et le bouton Envoyer entourés">
     <ol>
-      <li>Vérifie en bas : <b>AdCloner</b> et <b>adcloner… +1</b> (tes deux dossiers).</li>
+      <li>Vérifie en bas : <b>Amine</b> et <b>adcloner… +1</b> (tes deux dossiers).</li>
       <li>Le message est déjà écrit : clique sur la <b>flèche d'envoi</b>.</li>
     </ol>
     <p>Claude doit répondre que tout est <b>ok</b>. Sinon, il te dit quelle étape refaire : utilise « Retour » pour y revenir.</p>
@@ -305,18 +320,19 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
   <!-- Fin -->
   <section class="ecran" data-fin>
     <span class="partie">Terminé 🎉</span>
-    <h1>Bravo <span class="nom-seul"></span>, AdCloner est prêt</h1>
+    <div class="hote salut"><div class="bulle">C'est bon, je suis prêt à bosser pour toi 💪<br><br>Envoie-moi ta première pub.</div><div class="hote-corps"><img src="img/amine-salut.webp" alt="Amine te salue"></div></div>
+    <h1>Bravo <span class="nom-seul"></span>, Amine est prêt</h1>
     <p><b>Pour traduire une pub :</b></p>
-    <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Traduis cette vidéo en français. Ma marque : …, mon produit : …, mon site : …">Lancer AdCloner</a>
+    <a class="lien lancer" href="https://claude.ai/code" target="_blank" rel="noopener" data-prompt="Traduis cette vidéo en français. Ma marque : …, mon produit : …, mon site : …">Lancer Amine</a>
     <img class="capture" src="img/joindre.jpg" alt="Zone de message de Claude : bouton +, message et flèche d'envoi entourés">
     <ol>
       <li>Clique sur le <b>+</b> à gauche et choisis ta vidéo sur ton ordinateur.</li>
       <li>Complète le message déjà écrit : la langue, ta marque, ton produit, ton site.</li>
       <li>Clique sur la <b>flèche d'envoi</b>.</li>
     </ol>
-    <p>Claude t'annonce le coût et attend ton <b>ok</b>. Environ 15 minutes plus tard, il te donne un <b>lien</b> pour télécharger ta vidéo finie. Tu peux fermer l'ordinateur en attendant.</p>
+    <p>Amine t'annonce le coût et attend ton <b>ok</b>. Environ 15 minutes plus tard, il te donne un <b>lien</b> pour télécharger ta vidéo finie. Tu peux fermer l'ordinateur en attendant.</p>
     <div class="astuce"><b>Astuce :</b> ajoute cette page à tes favoris, elle s'ouvre directement ici avec tes boutons.</div>
-    <div class="astuce"><b>Mises à jour :</b> rien à faire. Tu utilises toujours la dernière version d'AdCloner.</div>
+    <div class="astuce"><b>Mises à jour :</b> rien à faire. Amine apprend en continu : tu as toujours sa dernière version.</div>
     <div class="astuce"><b>Bon à savoir :</b> ton dossier de vidéos est public : ton formateur (et toute personne qui a son adresse) peut voir tes vidéos.</div>
     <h2 style="font-size:22px;margin-top:26px">Un souci ?</h2>
     <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Revois l'écran « Les réglages » de ton atelier, puis démarre une <b>nouvelle</b> session.</p></details>
@@ -347,11 +363,11 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     document.querySelectorAll('.nom').forEach(function(e){e.textContent=p?p+', ':''});
     document.querySelectorAll('.nom-seul').forEach(function(e){e.textContent=p});
     if(i===0)suivant.disabled=!p;
-    // pseudo GitHub : prépare les boutons « Lancer AdCloner » (deux dépôts + environnement préchoisis) et « Dépose ta vidéo »
+    // pseudo GitHub : prépare les boutons « Lancer Amine » (deux dépôts + environnement préchoisis) et « Dépose ta vidéo »
     var g=pseudo.value.trim().replace(/^@/,'').replace(/[^A-Za-z0-9-]/g,'');
     var depots='contactsyriusmedia-create/adcloner-eleves'+(g?','+g+'/mes-videos-adcloner':'');
     document.querySelectorAll('.lancer').forEach(function(a){
-      a.href='https://claude.ai/code?repositories='+encodeURIComponent(depots)+'&environment=AdCloner&prompt='+encodeURIComponent(a.dataset.prompt||'');
+      a.href='https://claude.ai/code?repositories='+encodeURIComponent(depots)+'&environment=Amine&prompt='+encodeURIComponent(a.dataset.prompt||'');
     });
     document.querySelectorAll('.depot-sources').forEach(function(a){a.href=g?'https://github.com/'+g+'/mes-videos-adcloner/upload/main/sources':'https://github.com'});
     if(ecrans[i]&&ecrans[i].dataset.requis==='pseudo')suivant.disabled=!g;

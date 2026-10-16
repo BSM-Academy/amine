@@ -368,6 +368,13 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
   var i=Math.min(parseInt(lire('ecran'),10)||0, ecrans.length-1);
   prenom.value=lire('prenom');
   var pseudo=document.getElementById('pseudo'); pseudo.value=lire('pseudo');
+  // suivi formateur : prénom + pseudo + étape envoyés une fois par étape au formulaire Google « Élèves Amine · BSM Academy »
+  var SUIVI='https://docs.google.com/forms/d/e/1FAIpQLSchD1c4E1w4WVzkTA_DuHZreRPDqZhlw8uf0kC3Ia4udKRSqg/formResponse';
+  function suivi(etape){
+    var p=prenom.value.trim(); if(!p||lire('suivi-'+etape))return;
+    var g=pseudo.value.trim().replace(/^@/,'');
+    try{fetch(SUIVI,{method:'POST',mode:'no-cors',body:new URLSearchParams({'entry.609854161':p,'entry.2108766158':g,'entry.264842827':etape})}).then(function(){ecrire('suivi-'+etape,'1')},function(){})}catch(e){}
+  }
 
   function noms(){
     var p=prenom.value.trim();
@@ -398,8 +405,13 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
   }
   prenom.addEventListener('input',function(){ecrire('prenom',prenom.value);noms()});
   pseudo.addEventListener('input',function(){ecrire('pseudo',pseudo.value);noms()});
-  prenom.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&prenom.value.trim())montre(1)});
-  suivant.addEventListener('click',function(){if(i<ecrans.length-1)montre(i+1)});
+  prenom.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&prenom.value.trim()){suivi('1. A commencé');montre(1)}});
+  suivant.addEventListener('click',function(){
+    if(i===0)suivi('1. A commencé');
+    if(ecrans[i].dataset.requis==='pseudo')suivi('2. Dossier GitHub créé');
+    if(i<ecrans.length-1)montre(i+1);
+    if(ecrans[i].hasAttribute('data-fin'))suivi('3. Installation terminée');
+  });
   retour.addEventListener('click',function(){if(i>0)montre(i-1)});
   document.getElementById('recommencer').addEventListener('click',function(){montre(0)});
   montre(i,false);

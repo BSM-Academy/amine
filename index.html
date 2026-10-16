@@ -7,7 +7,7 @@
 <meta name="description" content="Le tuto pas à pas pour installer Amine, ton monteur vidéo IA, dans Claude, sans rien installer sur ton ordinateur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@500;700&family=Jost:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{
   --sauge:#9DB89A; --sauge-fond:#D5DECF; --noir:#0E100E; --alerte:#E5484D;
@@ -70,6 +70,11 @@ details{border-top:1px solid var(--trait);padding:12px 0}
 summary{cursor:pointer;font-weight:700}
 .capture{display:block;width:100%;border-radius:12px;border:1px solid var(--trait);margin:10px 0 14px}
 .capture.etroite{max-width:420px}
+.marque{display:flex;align-items:center;gap:10px;margin:0 0 16px;text-decoration:none;color:var(--texte)}
+.marque img{width:34px;height:34px}
+.marque span{font:400 19px "Jost",sans-serif;letter-spacing:.06em}
+.signature{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:var(--gris);margin-bottom:8px}
+.signature img{width:16px;height:16px}
 .logo{display:flex;align-items:center;gap:8px}
 .logo img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid var(--sauge)}
 .presente{display:flex;align-items:flex-end;gap:12px;margin:4px 0 18px}
@@ -89,12 +94,13 @@ summary{cursor:pointer;font-weight:700}
 </head>
 <body>
 <main class="page">
-  <div class="haut"><span class="logo"><img src="img/amine.jpg" alt="">Amine · ton monteur vidéo</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
+  <div class="marque" aria-label="BSM Academy"><img src="img/bsm.png" alt=""><span>ACADEMY</span></div>
+  <div class="haut"><span class="logo"><img src="img/amine.jpg" alt="">Amine · ton monteur vidéo IA</span><div class="jauge" aria-hidden="true"><i id="jauge"></i></div></div>
 
   <!-- Accueil -->
   <section class="ecran" data-bouton="C'est parti">
     <span class="partie">Installation</span>
-    <div class="hote"><div class="bulle">Moi c'est <b>Amine</b>, ton monteur vidéo 🎬<br><br>Je traduis tes pubs dans la langue que tu veux, avec une vraie voix.</div><div class="hote-corps"><img src="img/amine-accueil.webp" alt="Amine, le monteur vidéo de l'équipe, t'accueille"></div></div>
+    <div class="hote"><div class="bulle">Moi c'est <b>Amine</b>, ton monteur vidéo IA 🎬<br><br>Je traduis tes pubs dans la langue que tu veux, avec une vraie voix.</div><div class="hote-corps"><img src="img/amine-accueil.webp" alt="Amine, le monteur vidéo de l'équipe, t'accueille"></div></div>
     <h1>On m'installe ensemble&nbsp;?</h1>
     <p>Une petite étape à la fois, environ 20 minutes en tout. Rien ne s'installe sur ton ordinateur : je travaille dans le cloud de Claude.</p>
     <p><b>Comment tu t'appelles ?</b></p>
@@ -346,7 +352,7 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     <button class="suivant" id="suivant">Continuer</button>
     <button class="retour" id="retour">Retour</button>
   </div>
-  <div class="bas"><button class="retour" id="recommencer" style="font-size:13px">Recommencer depuis le début</button></div>
+  <div class="bas"><div class="signature"><img src="img/bsm.png" alt="">Un outil de l'accompagnement BSM Academy</div><button class="retour" id="recommencer" style="font-size:13px">Recommencer depuis le début</button></div>
 </main>
 <script>
 (function(){

@@ -115,8 +115,8 @@ summary{cursor:pointer;font-weight:700}
     <div class="services">
       <div class="service"><b>Claude Pro</b><span>mon cerveau (Pro ou Max)</span></div>
       <div class="service"><b>ElevenLabs</b><span>ma voix (Starter minimum)</span></div>
-      <div class="service"><b>Vmake</b><span>ma gomme : efface le texte (Plus minimum)</span></div>
-      <div class="service"><b>Replicate</b><span>sépare la voix de la musique (centimes)</span></div>
+      <div class="service"><b>Vmake</b><span>ma gomme : efface les sous-titres (Plus minimum)</span></div>
+      <div class="service"><b>Replicate</b><span>sépare la voix de la musique (quelques centimes par vidéo)</span></div>
       <div class="service"><b>Groq</b><span>mes oreilles : la transcription, gratuit</span></div>
       <div class="service"><b>GitHub</b><span>ta boîte aux lettres, gratuit</span></div>
     </div>
@@ -127,7 +127,7 @@ summary{cursor:pointer;font-weight:700}
   <section class="ecran" data-bouton="C'est fait">
     <span class="partie">GitHub</span>
     <h2>Crée ton compte GitHub</h2>
-    <p>C'est là que tu déposeras tes pubs à traduire, et là que tu retrouveras tes vidéos finies.</p>
+    <p>C'est là qu'Amine rangera tes vidéos finies. Tes pubs à traduire, tu les donneras directement à Amine dans Claude : rien à déposer sur GitHub.</p>
     <a class="lien" href="https://github.com/signup" target="_blank" rel="noopener">Créer mon compte GitHub</a>
     <p class="doux">Tu en as déjà un ? Garde-le et clique sur « C'est fait ».</p>
   </section>
@@ -255,15 +255,13 @@ summary{cursor:pointer;font-weight:700}
     <img class="capture etroite" src="img/env-script-variables.jpg" alt="Champs Script de configuration et Variables d'environnement entourés">
     <p><b>1. Dans « Script de configuration »</b>, colle :</p>
     <div class="bloc"><pre id="script">#!/bin/bash
-for d in /home/user/*/; do [ -f "$d/adcloner/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div>
+for d in /home/user/*/; do [ -f "$d/amine/SKILL.md" ] &amp;&amp; bash "$d/setup.sh"; done</pre><button class="copier" data-cible="script">Copier</button></div>
     <p><b>2. Dans « Variables d'environnement »</b>, colle :</p>
     <div class="bloc"><pre id="variables">GROQ_API_KEY=cloud
 ELEVENLABS_API_KEY=cloud
 REPLICATE_API_TOKEN=cloud
 MT_AK=COLLE_ICI_TON_ACCESS_KEY_VMAKE
 MT_SK=COLLE_ICI_TON_SECRET_KEY_VMAKE
-ADCLONER_WHISPER=groq
-ADCLONER_DEMUCS=replicate
 BASH_DEFAULT_TIMEOUT_MS=600000
 BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">Copier</button></div>
     <div class="attention">Dans ce qui est collé, remplace les deux textes en majuscules par tes <b>clés Vmake</b> : l'<b>API Key</b> après <code>MT_AK=</code>, la <b>Secret Access Key</b> après <code>MT_SK=</code>, sans espace.</div>

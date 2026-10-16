@@ -202,11 +202,16 @@ summary{cursor:pointer;font-weight:700}
     <span class="partie">Tes clés · 4/4</span>
     <h2>Tes clés Vmake</h2>
     <p>Il te faut l'abonnement <b>Plus</b> au minimum : c'est obligatoire pour l'API.</p>
+    <p><b>1.</b> Sur Vmake, clique sur l'onglet <b>API Keys</b> en haut (connecte-toi si on te le demande) :</p>
     <img class="capture" src="img/vmake.jpg" alt="Barre du haut de Vmake avec l'onglet API Keys entouré">
+    <p><b>2.</b> Tu arrives sur la page de tes clés :</p>
+    <img class="capture etroite" src="img/vmake-cles.jpg" alt="Page API Keys de Vmake : bouton Create New Key et les deux boutons copier entourés">
     <ol>
-      <li>Clique sur l'onglet <b>API Keys</b> en haut, et connecte-toi si on te le demande.</li>
-      <li>Copie les <b>deux</b> clés dans ta note : <b>Access Key</b> et <b>Secret Key</b>.</li>
+      <li>Pas encore de clé dans le tableau ? Clique sur <b>Create New Key</b> (repère 1).</li>
+      <li>Clique sur le bouton <b>copier</b> à droite de l'<b>API Key</b> (repère 2), puis colle-la dans ta note en écrivant devant : <code>API Key :</code></li>
+      <li>Clique sur le bouton <b>copier</b> à droite de la <b>Secret Access Key</b> (repère 3), puis colle-la dans ta note en écrivant devant : <code>Secret :</code></li>
     </ol>
+    <div class="astuce">La Secret Access Key est cachée par des étoiles <code>********</code>. Après l'avoir collée, vérifie dans ta note que ce n'est pas des étoiles : sinon, clique d'abord sur l'<b>œil</b> barré pour l'afficher, puis recopie-la.</div>
     <a class="lien" href="https://vmake.ai/developers" target="_blank" rel="noopener">Ouvrir Vmake</a>
   </section>
 
@@ -261,7 +266,7 @@ ADCLONER_WHISPER=groq
 ADCLONER_DEMUCS=replicate
 BASH_DEFAULT_TIMEOUT_MS=600000
 BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">Copier</button></div>
-    <div class="attention">Dans ce qui est collé, remplace les deux textes en majuscules par tes <b>clés Vmake</b> : l'Access Key après <code>MT_AK=</code>, la Secret Key après <code>MT_SK=</code>, sans espace.</div>
+    <div class="attention">Dans ce qui est collé, remplace les deux textes en majuscules par tes <b>clés Vmake</b> : l'<b>API Key</b> après <code>MT_AK=</code>, la <b>Secret Access Key</b> après <code>MT_SK=</code>, sans espace.</div>
     <p><b>3.</b> Clique sur <b>Ajouter un environnement</b> en bas (ou <b>Enregistrer les modifications</b>).</p>
   </section>
 

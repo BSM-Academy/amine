@@ -231,28 +231,22 @@ summary{cursor:pointer;font-weight:700}
     <a class="lien" href="https://vmake.ai/developers" target="_blank" rel="noopener">Ouvrir Vmake</a>
   </section>
 
-  <!-- Claude -->
-  <section class="ecran" data-bouton="C'est fait">
-    <span class="partie">Claude</span>
-    <h2>Connecte Claude à GitHub</h2>
-    <ol>
-      <li>Ouvre claude.ai/code (bouton 1 en bas). La première fois, Claude te propose de <b>connecter GitHub</b> : accepte. S'il ne te propose rien, c'est que c'est déjà fait : clique sur « C'est fait ».</li>
-      <li>GitHub te demande où installer Claude : laisse <b>All repositories</b> coché, comme ici, puis clique sur le bouton vert <b>Install</b>. Si tu ne vois jamais cette page, ouvre-la avec le bouton 2.</li>
-    </ol>
-    <img class="capture" src="img/github-claude.jpg" alt="Réglage GitHub Repository access avec All repositories entouré">
-    <a class="lien" href="https://claude.ai/code" target="_blank" rel="noopener">1. Ouvrir claude.ai/code</a>
-    <a class="lien" href="https://github.com/apps/claude/installations/new" target="_blank" rel="noopener">2. Installer Claude sur GitHub</a>
-  </section>
-
   <section class="ecran" data-bouton="La fenêtre est ouverte">
     <span class="partie">Ton atelier · 1/3</span>
-    <h2>Crée ton environnement</h2>
-    <p>L'environnement, c'est l'atelier où Amine travaille. Sur <a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>, tout en bas sous la zone de message :</p>
-    <img class="capture etroite" src="img/env-nouveau.jpg" alt="Bouton Cloud et menu Nouvel environnement entourés">
+    <h2>Ouvre Claude et crée ton environnement</h2>
+    <p>L'environnement, c'est l'atelier où Amine travaille. Tout se passe sur claude.ai/code (bouton 1 en bas) :</p>
     <ol>
+      <li>La première fois, Claude te propose de <b>connecter GitHub</b> : accepte. GitHub te demande où installer Claude : laisse <b>All repositories</b> coché, puis clique sur le bouton vert <b>Install</b>. S'il ne te propose rien, c'est déjà fait. Si ça bloque, utilise le bouton 2.</li>
+    </ol>
+    <img class="capture" src="img/github-claude.jpg" alt="Réglage GitHub Repository access avec All repositories entouré">
+    <p>Ensuite, tout en bas sous la zone de message :</p>
+    <img class="capture etroite" src="img/env-nouveau.jpg" alt="Bouton Cloud et menu Nouvel environnement entourés">
+    <ol start="2">
       <li>Clique sur le bouton avec le <b>petit nuage</b>.</li>
       <li>Clique sur <b>Nouvel environnement</b>.</li>
     </ol>
+    <a class="lien" href="https://claude.ai/code" target="_blank" rel="noopener">1. Ouvrir claude.ai/code</a>
+    <a class="lien" href="https://github.com/apps/claude/installations/new" target="_blank" rel="noopener">2. Installer Claude sur GitHub</a>
   </section>
 
   <section class="ecran" data-bouton="C'est fait">
@@ -364,7 +358,7 @@ BASH_MAX_TIMEOUT_MS=1800000</pre><button class="copier" data-cible="variables">C
     <details><summary>Claude dit qu'une variable est « MANQUANTE »</summary><p>Revois l'écran « Les réglages » de ton atelier, puis démarre une <b>nouvelle</b> session.</p></details>
     <details><summary>Erreur 401 ou « invalid api key »</summary><p>La clé de ce service est fausse. Supprime son secret dans le coffre et ajoute-le à nouveau. ElevenLabs : la clé commence par <code>sk_</code>.</p></details>
     <details><summary>Erreur 402, « insufficient credit » ou quota</summary><p>Le compte de ce service n'a plus de crédit : recharge-le.</p></details>
-    <details><summary>Claude ne voit pas mon dépôt</summary><p>Refais l'écran « Connecte Claude à GitHub ».</p></details>
+    <details><summary>Claude ne voit pas mon dépôt</summary><p>Refais l'écran « Ouvre Claude et crée ton environnement » (bouton 2 : installer Claude sur GitHub, avec <b>All repositories</b>).</p></details>
     <details><summary>Ma vidéo ne s'ajoute pas (trop lourde)</summary><p>Réduis-la avant (par exemple avec HandBrake, gratuit), ou demande à ton formateur.</p></details>
   </section>
 
